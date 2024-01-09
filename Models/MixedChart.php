@@ -43,7 +43,7 @@ class MixedChart extends BaseModel
     {
         Relation::morphMap([
             'question_chart' => QuestionChart::class,
-            'mixed_chart' => \Modules\Chart\Models\MixedChart::class,
+            'mixed_chart' => MixedChart::class,
         ]);
 
         return $this->morphMany(Chart::class, 'post');
