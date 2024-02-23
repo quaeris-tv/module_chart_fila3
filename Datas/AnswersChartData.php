@@ -65,7 +65,7 @@ class AnswersChartData extends Data
         $datasets = [];
         $data = $this->answers->toCollection()->pluck('value')->all();
 
-        if (in_array($this->chart->type, ['pieAvg', 'pie1'])) {
+        if (in_array($this->chart->type, ['pieAvg', 'pie1'], false)) {
             $data = $this->answers->toCollection()->pluck('avg')->all();
 
             if (isset($this->chart->max)) {
