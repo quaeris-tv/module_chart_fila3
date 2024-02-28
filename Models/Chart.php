@@ -25,11 +25,7 @@ use Webmozart\Assert\Assert;
  */
 class Chart extends BaseModel
 {
-    /**
-     * Undocumented variable.
-     *
-     * @var array<string>
-     */
+    /** @var array<int, string> */
     protected $fillable = [
         'id',
         'post_id',
@@ -79,9 +75,7 @@ class Chart extends BaseModel
         'plot_value_color' => '#000000',
     ];
 
-    /**
-     * @var array<string, string>
-     */
+    /** @var array<string, string> */
     protected $casts = [
         'colors' => 'array',
     ];
@@ -209,7 +203,7 @@ class Chart extends BaseModel
 
     public function getTypeAttribute(?string $value): ?string
     {
-        if ($value !== null) {
+        if (null !== $value) {
             return $value;
         }
 
@@ -218,10 +212,11 @@ class Chart extends BaseModel
 
     public function getWidthAttribute(?string $value): ?int
     {
-        if ($value === null) {
+        if (null === $value) {
             return (int) $this->getPanelRow('width', 'width');
         }
-        if ($value == 0) {
+
+        if (0 === (int) $value) {
             return (int) $this->getPanelRow('width', 'width');
         }
 
@@ -230,10 +225,10 @@ class Chart extends BaseModel
 
     public function getHeightAttribute(?string $value): ?int
     {
-        if ($value === null) {
+        if (null === $value) {
             return (int) $this->getPanelRow('height', 'height');
         }
-        if ($value == 0) {
+        if (0 === (int) $value) {
             return (int) $this->getPanelRow('height', 'height');
         }
 

@@ -29,9 +29,7 @@ use Modules\Quaeris\Models\QuestionChart;
  */
 class MixedChart extends BaseModel
 {
-    /**
-     * @var array<string>
-     */
+    /** @var array<int, string> */
     protected $fillable = [
         'id',
         'name',
@@ -43,7 +41,7 @@ class MixedChart extends BaseModel
     {
         Relation::morphMap([
             'question_chart' => QuestionChart::class,
-            'mixed_chart' => MixedChart::class,
+            'mixed_chart' => self::class,
         ]);
 
         return $this->morphMany(Chart::class, 'post');

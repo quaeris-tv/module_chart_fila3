@@ -29,33 +29,24 @@ abstract class BaseModel extends Model
      * @see  https://laravel-news.com/6-eloquent-secrets
      */
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     public static $snakeAttributes = true;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     public $incrementing = true;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     public $timestamps = true;
-
+    /** @var int */
     protected $perPage = 30;
 
+    /** @var string */
     protected $connection = 'chart';
 
-    /**
-     * @var array<string, string>
-     */
+    /** @var array<string, string> */
     protected $casts = ['published_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $primaryKey = 'id';
 
     /**
