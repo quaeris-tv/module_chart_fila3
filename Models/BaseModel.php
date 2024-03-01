@@ -49,9 +49,7 @@ abstract class BaseModel extends Model
     /** @var string */
     protected $primaryKey = 'id';
 
-    /**
-     * @var array<int, string>
-     */
+    /** @var array<int, string> */
     protected $hidden = [
         // 'password'
     ];
