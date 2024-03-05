@@ -203,7 +203,7 @@ class Chart extends BaseModel
 
     public function getTypeAttribute(?string $value): ?string
     {
-        if (null !== $value) {
+        if ($value !== null) {
             return $value;
         }
 
@@ -212,11 +212,11 @@ class Chart extends BaseModel
 
     public function getWidthAttribute(?string $value): ?int
     {
-        if (null === $value) {
+        if ($value === null) {
             return (int) $this->getPanelRow('width', 'width');
         }
 
-        if (0 === (int) $value) {
+        if ((int) $value === 0) {
             return (int) $this->getPanelRow('width', 'width');
         }
 
@@ -225,10 +225,10 @@ class Chart extends BaseModel
 
     public function getHeightAttribute(?string $value): ?int
     {
-        if (null === $value) {
+        if ($value === null) {
             return (int) $this->getPanelRow('height', 'height');
         }
-        if (0 === (int) $value) {
+        if ((int) $value === 0) {
             return (int) $this->getPanelRow('height', 'height');
         }
 
