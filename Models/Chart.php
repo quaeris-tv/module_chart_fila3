@@ -12,14 +12,14 @@ use Webmozart\Assert\Assert;
 /**
  * Modules\Chart\Models\Chart.
  *
- * @property int|null    $height
+ * @property int|null $height
  * @property string|null $type
- * @property int|null    $width
+ * @property int|null $width
  *
  * @method static \Modules\Chart\Database\Factories\ChartFactory factory($count = null, $state = [])
- * @method static Builder|Chart                                  newModelQuery()
- * @method static Builder|Chart                                  newQuery()
- * @method static Builder|Chart                                  query()
+ * @method static Builder|Chart newModelQuery()
+ * @method static Builder|Chart newQuery()
+ * @method static Builder|Chart query()
  *
  * @mixin \Eloquent
  */
