@@ -105,7 +105,7 @@ class AnswersChartData extends Data
                 if ($other > 0.01) {
                     $data[] = $other;
                     $labels[] = $this->chart->answer_value_no_txt ?? 'answer_value_no_txt';
-                    Assert::notNull($labels[0]);
+                    Assert::notNull($labels[0], '['.__FILE__.']['.__LINE__.']');
                     if (\count($labels) === 2 && \strlen($labels[0]) < 3) {
                         $labels[0] = $this->chart->answer_value_txt;
                     }
