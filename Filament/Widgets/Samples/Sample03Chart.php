@@ -35,7 +35,7 @@ class Sample03Chart extends ChartWidget
 
     protected function getType(): string
     {
-        return 'doughnut';
+        return 'line';
     }
 
     protected function getOptions(): array
