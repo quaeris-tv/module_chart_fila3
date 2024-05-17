@@ -2,6 +2,8 @@
 /**
  * @see https://codesandbox.io/p/sandbox/chartjs-doughnut-center-labels-2h4zt?file=%2Fsrc%2Findex.js
  * @see https://www.geeksforgeeks.org/how-to-add-text-inside-the-doughnut-chart-using-chart-js/
+ * @see https://quickchart.io/documentation/chart-js/custom-pie-doughnut-chart-labels/
+ * @see https://jsfiddle.net/kdvuxbtj/
  */
 
 namespace Modules\Chart\Filament\Widgets\Samples;
@@ -24,6 +26,9 @@ class Sample03Chart extends ChartWidget
                     'borderColor' => '#9BD0F5',
                 ],
             ],
+            'datalabels' => [
+                'color' => '#FFCE56',
+            ],
             'labels' => ['January', 'February', 'March', 'April', 'May'],
         ];
     }
@@ -37,17 +42,31 @@ class Sample03Chart extends ChartWidget
     {
         return [
             'plugins' => [
-                'legend' => [
-                    'display' => false,
-                ],
+                //'legend' => [
+                //    'display' => false,
+                //],
                 'datalabels' => [
-                    'display' => false,
+                    'display' => true,
+                    'color' => '#FFCE56',
                     'backgroundColor' => '#ccc',
                     'borderRadius' => 3,
-                    'anchor' => 'start',
                     'font' => [
                       'color' => 'red',
                       'weight' => 'bold',
+                    ],
+                ],
+                'doughnutlabel' => [
+                    'labels' => [
+                      [
+                        'text' => '550',
+                        'font' => [
+                          'size' => 20,
+                          'weight' => 'bold',
+                        ],
+                    ],
+                      [
+                        'text' => 'total',
+                      ],
                     ],
                 ],
             ],
