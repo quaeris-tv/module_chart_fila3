@@ -1,11 +1,15 @@
 <?php
+/**
+ * @see https://codesandbox.io/p/sandbox/chartjs-doughnut-center-labels-2h4zt?file=%2Fsrc%2Findex.js
+ * @see https://www.geeksforgeeks.org/how-to-add-text-inside-the-doughnut-chart-using-chart-js/
+ */
 
 namespace Modules\Chart\Filament\Widgets\Samples;
 
 use Filament\Widgets\ChartWidget;
 use Filament\Support\RawJs;
 
-class Sample01Chart extends ChartWidget
+class Sample03Chart extends ChartWidget
 {
     protected static ?string $heading = 'Blog Posts';
 
@@ -26,7 +30,7 @@ class Sample01Chart extends ChartWidget
 
     protected function getType(): string
     {
-        return 'bar';
+        return 'doughnut';
     }
 
     protected function getOptions(): array
@@ -37,7 +41,7 @@ class Sample01Chart extends ChartWidget
                     'display' => false,
                 ],
                 'datalabels' => [
-                    'display' => true,
+                    'display' => false,
                     'backgroundColor' => '#ccc',
                     'borderRadius' => 3,
                     'anchor' => 'start',
