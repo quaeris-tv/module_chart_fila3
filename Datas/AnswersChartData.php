@@ -166,13 +166,81 @@ class AnswersChartData extends Data
             $options['indexAxis'] = 'y';
         }
 
+        if ($this->chart->type === 'pieAvg' || $this->chart->type === 'pie1') {
+            $options['scales'] = [
+                'x' => [
+                    'grid' => [
+                        'display' => false,
+                    ],
+                    'ticks' => [
+                        'display' => false, // Questa opzione nasconde i numeri sull'asse X
+                    ]
+                ],
+                'y' => [
+                    'grid' => [
+                        'display' => false,
+                    ],
+                    'ticks' => [
+                        'display' => false, // Questa opzione nasconde i numeri sull'asse Y
+                    ]
+                ]
+            ];
+
+            $options['plugins']['datalabels'] = [
+                'display' => false,
+            ];
+        }
+
+        if($this->chart->type === 'bar2' || $this->chart->type === 'bar' || $this->chart->type === 'horizbar1'){
+            $options['plugins']['datalabels'] = [
+                'display' => true,
+                'backgroundColor' => '#ccc',
+                'borderRadius' => 3,
+                'anchor' => 'start',
+                'font' => [
+                  'color' => 'red',
+                  'weight' => 'bold',
+                ],
+            ];
+            $options['plugins']['legend'] = [
+                'display' => false,
+            ];
+        }
+
+        // if($this->chart->type === 'bar2'){
+        //     dddx([$this->chart->type, $this->answers]);
+        //     $options['plugins']['datalabels']['labers'] = [
+                    
+        //         ];
+        // }
+
+        // if($this->chart->type === 'horizbar1'){
+        //     $options['plugins']['datalabels'] = [
+        //             'formatter'=> round((float) $this->answers->first()->avg, 2).'%',
+        //         ];
+        // }
+
+
+        if($this->chart->type === 'pieAvg'){
+            $options['plugins']['doughnutLabel'] = [
+                    'label'=> round($this->answers->first()->avg, 2),
+                ];
+        }
+
+        if($this->chart->type === 'pie1'){
+            // dddx($this->answers->first());
+            $options['plugins']['doughnutLabel'] = [
+                'label'=> round((float) $this->answers->first()->avg, 2)
+            ];
+        }
+
         // $options['plugins']['tooltip']['title'] = [
         //     'display' => true,
         //     // 'title' => 'prova',
         //     'text' => 'provaaaa',
         // ];
 
-        // dddx($options);
+        // dddx([$options, $this->chart->type]);
         return $options;
 
         // var options = {
