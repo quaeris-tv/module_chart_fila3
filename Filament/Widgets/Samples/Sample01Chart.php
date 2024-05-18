@@ -36,6 +36,9 @@ class Sample01Chart extends ChartWidget
                 'legend' => [
                     'display' => false,
                 ],
+                //'tooltipNote'=> [
+                //    'display' => true,
+                //],
                 'datalabels' => [
                     'display' => true,
                     'backgroundColor' => '#ccc',
