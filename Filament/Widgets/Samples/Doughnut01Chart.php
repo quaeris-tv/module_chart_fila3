@@ -5,7 +5,7 @@ namespace Modules\Chart\Filament\Widgets\Samples;
 use Filament\Widgets\ChartWidget;
 use Filament\Support\RawJs;
 
-class Sample01Chart extends ChartWidget
+class Doughnut01Chart extends ChartWidget
 {
     protected static ?string $heading = 'Blog Posts';
 
@@ -14,7 +14,7 @@ class Sample01Chart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    //'label' => 'Blog posts created',
+                    'label' => 'Blog posts created',
                     'data' => [50, 60, 70, 180, 190],
                     'backgroundColor' => '#36A2EB',
                     'borderColor' => '#9BD0F5',
@@ -26,7 +26,7 @@ class Sample01Chart extends ChartWidget
 
     protected function getType(): string
     {
-        return 'bar';
+        return 'doughnut';
     }
 
     protected function getOptions(): array
@@ -34,14 +34,13 @@ class Sample01Chart extends ChartWidget
         return [
             'plugins' => [
                 'legend' => [
-                    'display' => false,
-                ],
-                //'tooltipNote'=> [
-                //    'display' => true,
-                //],
-                //'doughnutLabel' => false,
-                'datalabels' => [
                     'display' => true,
+                ],
+                'doughnutLabel'=>[
+                    'label'=>'sti cazzi !',
+                ],
+                'datalabels' => [
+                    'display' => false,
                     'backgroundColor' => '#ccc',
                     'borderRadius' => 3,
                     'anchor' => 'start',
