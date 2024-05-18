@@ -25,7 +25,7 @@ const tooltipNote = {
         //var text=data.labels[0];
         //console.log(chart.config.options.plugins.doughnutLabel.label);
         var text=chart.config.options.plugins.doughnutLabel.label;
-        console.log(data);
+        
         ctx.fillText(text,xCoor,yCoor);
     }
     //*/
