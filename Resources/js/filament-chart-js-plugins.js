@@ -58,6 +58,22 @@ const tooltipNote = {
     }
     */
   }
+
+
+  // const percYLabel={
+  //   id: 'percLabel',
+  //   ///*
+  //   beforeDatasetsDraw(chart){
+  //       if(chart.config.options.scales.y.ticks.callback.label== undefined){
+  //           return;
+  //       }
+  //       const{ctx,data}=chart;
+  //       ctx.save();
+  //       var text=chart.config.optionsscales.y.ticks.callback.label + '%';
+        
+  //       ctx.fillText(text);
+  //   }
+  // }
  
 window.filamentChartJsPlugins ??= []
 window.filamentChartJsPlugins.push(ChartDataLabels);

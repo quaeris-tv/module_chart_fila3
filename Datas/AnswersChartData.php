@@ -215,8 +215,17 @@ class AnswersChartData extends Data
         // }
 
         // if($this->chart->type === 'horizbar1'){
-        //     $options['plugins']['datalabels'] = [
-        //             'formatter'=> round((float) $this->answers->first()->avg, 2).'%',
+        //     $options['scales'] = [
+        //             'y' => [
+        //                 'ticks' => [
+        //                     'callback' => [
+        //                         'percYLabel' => [
+        //                             'label' => 'aaaa'
+        //                         ],
+        //                     ],
+        //                     // 'display' => false, // Questa opzione nasconde i numeri sull'asse Y
+        //                 ]
+        //             ]
         //         ];
         // }
 
