@@ -49,6 +49,39 @@ class Sample01Chart extends ChartWidget
                       'color' => 'red',
                       'weight' => 'bold',
                     ],
+                    'labels' => [
+                        'name' => [
+                            'align' => 'top',
+                            'font' => ['size' => 9],
+                            // formatter: function(value, ctx) {
+                            // return ctx.active
+                            //     ? 'name'
+                            //     : ctx.chart.data.labels[ctx.dataIndex];
+                            // }
+                        ],
+                        'value' => [
+                            'align' => 'bottom',
+                            // backgroundColor: function(ctx) {
+                            // var value = ctx.dataset.data[ctx.dataIndex];
+                            // return value > 50 ? 'white' : null;
+                            // },
+                            'borderColor' => 'white',
+                            'borderWidth' => 2,
+                            'borderRadius' => 4,
+                            // color: function(ctx) {
+                            // var value = ctx.dataset.data[ctx.dataIndex];
+                            // return value > 50
+                            //     ? ctx.dataset.backgroundColor
+                            //     : 'white';
+                            // },
+                            // formatter: function(value, ctx) {
+                            // return ctx.active
+                            //     ? 'value'
+                            //     : Math.round(value * 1000) / 1000;
+                            // },
+                            'padding' => 4
+                        ]
+                    ]
                 ],
             ],
         ];
