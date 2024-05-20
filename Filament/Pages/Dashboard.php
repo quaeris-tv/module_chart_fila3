@@ -22,10 +22,13 @@ class Dashboard extends Page
     }
     */
 
-    public function getHeaderWidgets():array{
+    public function getHeaderWidgets(): array
+    {
         return [
+            WidgetsSamples\OverlookWidget::make(),
             WidgetsSamples\Doughnut01Chart::make(),
             WidgetsSamples\Sample01Chart::make(),
+
         ];
     }
 }

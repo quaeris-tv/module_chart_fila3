@@ -26,8 +26,8 @@ export default defineConfig({
                 __dirname + '/Resources/js/app.js',
                 __dirname + '/Resources/js/filament-chart-js-plugins'
             ],
-            //...refreshPaths,
-            //refresh: true,
+            ...refreshPaths,
+            refresh: true,
         }),
     ],
 });

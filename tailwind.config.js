@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  content: [
+    '../../vendor/awcodes/overlook/resources/**/*.blade.php',
+  ],
   theme: {
     extend: {},
   },
