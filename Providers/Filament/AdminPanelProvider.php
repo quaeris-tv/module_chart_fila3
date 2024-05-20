@@ -8,9 +8,9 @@ use Filament\Panel;
 use Modules\Quaeris\Filament\Pages\Dashboard;
 use Modules\Xot\Providers\Filament\XotBasePanelProvider;
 use Filament\Support\Assets\Js;
+use Filament\Support\Assets\Css;
 use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Support\Facades\Vite;
-
 
 class AdminPanelProvider extends XotBasePanelProvider
 {
@@ -24,6 +24,7 @@ class AdminPanelProvider extends XotBasePanelProvider
         //]);
         FilamentAsset::register([
             Js::make('chart-js-plugins', Vite::asset('Resources/js/filament-chart-js-plugins.js', 'assets/chart'))->module(),
+            Css::make('chart-js-plugins', Vite::asset('Resources/css/app.css', 'assets/chart')),
         ]);
 
         return $panel;
