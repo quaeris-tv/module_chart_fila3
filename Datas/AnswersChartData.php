@@ -214,6 +214,28 @@ class AnswersChartData extends Data
                     legend:{
                         display: false,
                     },
+
+                    // come faccio ad aggiungerlo solo quando mi serve?
+
+                    //             labels: {
+                    //                 name: {
+                    //                     align: 'center',
+                    //                     formatter: function(value, ctx) {
+                    //                         return ctx.dataset.data2[ctx.dataIndex];
+                    //                     },
+                    //                     borderColor: 'white',
+                    //                     borderWidth: 2,
+                    //                     borderRadius: 4,
+                    //                     padding: 4
+                    //                 },
+                    //                 value: {
+                    //                     align: 'bottom',
+                    //                     borderColor: 'white',
+                    //                     borderWidth: 2,
+                    //                     borderRadius: 4,
+                    //                     padding: 4
+                    //                 }
+                    //             }
                 },
 
                 indexAxis: '$indexAxis'
