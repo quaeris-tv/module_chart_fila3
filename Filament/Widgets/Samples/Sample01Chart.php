@@ -18,6 +18,7 @@ class Sample01Chart extends ChartWidget
                     'data' => [50, 60, 70, 180, 190],
                     'backgroundColor' => '#36A2EB',
                     'borderColor' => '#9BD0F5',
+                    'data2' => ['aaa', 'bbbb', 'ccc', 'ddd', 'mmmm']
                 ],
             ],
             'labels' => ['January', 'February', 'March', 'April', 'May'],

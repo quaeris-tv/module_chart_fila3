@@ -126,7 +126,12 @@ class AnswersChartData extends Data
                 ],
             ];
         }
-       
+        
+        // dddx([
+        //     'datasets' => $datasets,
+        //     'labels' => $this->answers->toCollection()->pluck('label')->all(),
+        // ]);
+
         return [
             'datasets' => $datasets,
             'labels' => $this->answers->toCollection()->pluck('label')->all(),
@@ -167,7 +172,6 @@ class AnswersChartData extends Data
         $chartjs_type=$this->getChartJsType();
         $method='getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsArray';
         $options=$this->{$method}($options);
- 
         return $options;
 
         
@@ -175,9 +179,25 @@ class AnswersChartData extends Data
 
 
     public function getChartJsBarOptionsJs(string $js):string {
+        $indexAxis = 'x';
+        $value = '';
+        // dddx($this->chart->max);
+        if ($this->chart->max === 100.0) {
+            $value = ' %';
+        }
+        if ($this->chart->type === 'horizbar1') {
+            $indexAxis = 'y';
+            $value = ' %';
+        }
+
+        
+
         $js=<<<JS
             plugins: {
                 datalabels:{
+                    formatter: function(value, context) {
+                        return value+'$value';
+                    },
                     display: true,
                     backgroundColor: '#ccc',
                     borderRadius:3,
@@ -189,9 +209,33 @@ class AnswersChartData extends Data
                 },
                 legend:{
                     display: false,
-                }
-            }
+                },
+                
+                // tooltip: {
+                //     callbacks: {
+                //         label: function(context) {
+                //             let label = context.dataset.label || '';
+
+                //             return label + '!';
+                //         }
+                //     }
+                // }
+            },
+
+            indexAxis: '$indexAxis'
             JS;
+
+        // $js .= <<<JS
+        //     ,scales: {
+        //             y: {
+        //                 ticks: {
+        //                     callback: (value) => '€' + value,
+        //                 },
+        //             },
+        //         },
+
+        //     JS;
+        // dddx($js);
         return $js;
     }
 
@@ -279,7 +323,17 @@ class AnswersChartData extends Data
         
         $js='';
         $chartjs_type=$this->getChartJsType();
+
+        // if($chartjs_type != 'doughnut'){
+        //     dddx($chartjs_type);
+        // }
+        
+        
+        
         $method='getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsJs';
+        // if($method != 'getChartJsDoughnutOptionsJs'){
+        //     dddx($method);
+        // }
         $js=$this->{$method}($js);
  
         return RawJs::make('{

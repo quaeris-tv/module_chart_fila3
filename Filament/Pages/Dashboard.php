@@ -25,6 +25,7 @@ class Dashboard extends Page
     public function getHeaderWidgets(): array
     {
         return [
+            WidgetsSamples\Bar02Chart::make(),
             WidgetsSamples\OverlookWidget::make(),
             WidgetsSamples\Doughnut01Chart::make(),
             WidgetsSamples\Sample01Chart::make(),
