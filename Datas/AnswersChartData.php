@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Datas;
 
+use Filament\Support\RawJs;
+use Illuminate\Support\Str;
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\DataCollection;
 use Webmozart\Assert\Assert;
+use Spatie\LaravelData\DataCollection;
 
 class AnswersChartData extends Data
 {
@@ -31,13 +33,8 @@ class AnswersChartData extends Data
     {
         $type = $this->chart->type;
         switch ($type) {
-            case 'pieAvg': // questa è una media ha un solo valore
-                $type = 'doughnut';
-                break;
-            case 'horizbar1':
-                $type = 'bar';
-                break;
             case 'pie1':
+            case 'pieAvg': // questa è una media ha un solo valore
                 $type = 'doughnut';
                 break;
             case 'lineSubQuestion':
@@ -46,6 +43,7 @@ class AnswersChartData extends Data
             case 'bar2':
             case 'bar1':
             case 'bar3':
+            case 'horizbar1':
                 $type = 'bar';
                 break;
 
@@ -166,177 +164,75 @@ class AnswersChartData extends Data
             $options['indexAxis'] = 'y';
         }
 
-        if ($this->chart->type === 'pieAvg' || $this->chart->type === 'pie1') {
-            $options['scales'] = [
-                'x' => [
-                    'grid' => [
-                        'display' => false,
-                    ],
-                    'ticks' => [
-                        'display' => false, // Questa opzione nasconde i numeri sull'asse X
-                    ]
-                ],
-                'y' => [
-                    'grid' => [
-                        'display' => false,
-                    ],
-                    'ticks' => [
-                        'display' => false, // Questa opzione nasconde i numeri sull'asse Y
-                    ]
-                ]
-            ];
-
-            $options['plugins']['datalabels'] = [
-                'display' => false,
-            ];
-        }
-
-        if($this->chart->type === 'bar2' || $this->chart->type === 'bar' || $this->chart->type === 'horizbar1'){
-            $options['plugins']['datalabels'] = [
-                'display' => true,
-                'backgroundColor' => '#ccc',
-                'borderRadius' => 3,
-                'anchor' => 'start',
-                'font' => [
-                  'color' => 'red',
-                  'weight' => 'bold',
-                ],
-            ];
-            $options['plugins']['legend'] = [
-                'display' => false,
-            ];
-        }
-
-        // if($this->chart->type === 'bar2'){
-        //     // dddx([$this->chart->type, $this->answers]);
-        //     $options['plugins']['datalabels']['labels'] = [
-        //             'name' => [
-        //                 'align' => 'top',
-        //                 'font' => ['size' => 9],
-        //                 // formatter: function(value, ctx) {
-        //                 // return ctx.active
-        //                 //     ? 'name'
-        //                 //     : ctx.chart.data.labels[ctx.dataIndex];
-        //                 // }
-        //             ],
-        //             'value' => [
-        //                 'align' => 'bottom',
-        //                 // backgroundColor: function(ctx) {
-        //                 // var value = ctx.dataset.data[ctx.dataIndex];
-        //                 // return value > 50 ? 'white' : null;
-        //                 // },
-        //                 'borderColor' => 'white',
-        //                 'borderWidth' => 2,
-        //                 'borderRadius' => 4,
-        //                 // color: function(ctx) {
-        //                 // var value = ctx.dataset.data[ctx.dataIndex];
-        //                 // return value > 50
-        //                 //     ? ctx.dataset.backgroundColor
-        //                 //     : 'white';
-        //                 // },
-        //                 // formatter: function(value, ctx) {
-        //                 // return ctx.active
-        //                 //     ? 'value'
-        //                 //     : Math.round(value * 1000) / 1000;
-        //                 // },
-        //                 'padding' => 4
-        //             ]
-        //         ];
-        // }
-
-        // if($this->chart->type === 'horizbar1'){
-        //     $options['scales'] = [
-        //             'y' => [
-        //                 'ticks' => [
-        //                     'callback' => [
-        //                         'percYLabel' => [
-        //                             'label' => 'aaaa'
-        //                         ],
-        //                     ],
-        //                     // 'display' => false, // Questa opzione nasconde i numeri sull'asse Y
-        //                 ]
-        //             ]
-        //         ];
-        // }
-
-
-        if($this->chart->type === 'pieAvg'){
-            $options['plugins']['doughnutLabel'] = [
-                    'label'=> round($this->answers->first()->avg, 2),
-                ];
-        }
-
-        if($this->chart->type === 'pie1'){
-            // dddx($this->answers->first());
-            $options['plugins']['doughnutLabel'] = [
-                'label'=> round((float) $this->answers->first()->avg, 2)
-            ];
-        }
-
-        // $options['plugins']['tooltip']['title'] = [
-        //     'display' => true,
-        //     // 'title' => 'prova',
-        //     'text' => 'provaaaa',
-        // ];
-
-
-        // if($this->chart->type === 'bar2'){
-        //     dddx([$options, $this]);
-        // }
-        
-        
+        $chartjs_type=$this->getChartJsType();
+        $method='getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsArray';
+        $options=$this->{$method}($options);
+ 
         return $options;
 
-        // var options = {
-        //     tooltips: {
-        //             callbacks: {
-        //                 label: function(tooltipItem) {
-        //                     return "$" + Number(tooltipItem.yLabel) + " and so worth it !";
-        //                 }
-        //             }
-        //         },
-        //             title: {
-        //                       display: true,
-        //                       text: 'Ice Cream Truck',
-        //                       position: 'bottom'
-        //                   },
-        //             scales: {
-        //                 yAxes: [{
-        //                     ticks: {
-        //                         beginAtZero:true
-        //                     }
-        //                 }]
-        //             }
-        //     };
+        
+    }
 
-        // [plugins: [{
-        //     id: "centerText"
-        //     , afterDatasetsDraw(chart, args, options) {
-        //         const {ctx, chartArea: {left, right, top, bottom, width, height}} = chart;
+    public function getChartJsBarOptionsArray(array $options):array{
+        $options['plugins']['datalabels'] = [
+            'display' => true,
+            'backgroundColor' => '#ccc',
+            'borderRadius' => 3,
+            'anchor' => 'start',
+            'font' => [
+              'color' => 'red',
+              'weight' => 'bold',
+            ],
+        ];
+        $options['plugins']['legend'] = [
+            'display' => false,
+        ];
+        return $options;
+    }
 
-        //         ctx.save();
+    public function getChartJsDoughnutOptionsArray(array $options):array{
+        $options['scales'] = [
+            'x' => [
+                'grid' => [
+                    'display' => false,
+                ],
+                'ticks' => [
+                    'display' => false, // Questa opzione nasconde i numeri sull'asse X
+                ]
+            ],
+            'y' => [
+                'grid' => [
+                    'display' => false,
+                ],
+                'ticks' => [
+                    'display' => false, // Questa opzione nasconde i numeri sull'asse Y
+                ]
+            ]
+        ];
 
-        //         var fontSize = width * 4.5 / 100;
-        //         var lineHeight = fontSize + (fontSize * {{$take}} / 100);
+        $options['plugins']['datalabels'] = [
+            'display' => false,
+        ];
 
-        //         ctx.font = "bolder " + fontSize + "px Arial";
-        //         ctx.fillStyle = "rgba(0, 0, 0, 1)";
-        //         ctx.textAlign = "center";
-        //         ctx.fillText("{{$average}}", width / 2, (height / 2 + top - (lineHeight)));
-        //         ctx.restore();
+        $options['plugins']['doughnutLabel'] = [
+            'label'=> round(floatval($this->answers->first()->avg), 2),
+        ];
+        return $options;
+    }
 
-        //         ctx.font = fontSize + "px Arial";
-        //         ctx.fillStyle = "rgba(0, 0, 0, 1)";
-        //         ctx.textAlign = "center";
-        //         ctx.fillText("MEDIA", width / 2, (height / 2 + top) + fontSize - lineHeight);
-        //         ctx.restore();
 
-        //         ctx.font = fontSize + "px Arial";
-        //         ctx.fillStyle = "rgba(0, 0, 0, 1)";
-        //         ctx.textAlign = "center";
-        //         ctx.fillText("COMPLESSIVA", width / 2, (height / 2 + top) + fontSize);
-        //         ctx.restore();
-        //     }
-        // }]]
+    public function getChartJsOptionsJs(): RawJs
+    {
+        return RawJs::make(<<<JS
+            {
+                scales: {
+                    y: {
+                        ticks: {
+                            callback: (value) => '€' + value,
+                        },
+                    },
+                },
+            }
+        JS);
     }
 }
