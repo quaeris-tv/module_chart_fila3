@@ -134,7 +134,7 @@ class AnswersChartData extends Data
         ];
     }
 
-    public function getChartJsOptions(): array
+    public function getChartJsOptionsArray(): array
     {
         $title = [];
 
@@ -171,6 +171,59 @@ class AnswersChartData extends Data
         return $options;
 
         
+    }
+
+
+    public function getChartJsBarOptionsJs(string $js):string {
+        $js=<<<JS
+            plugins: {
+                datalabels:{
+                    display: true,
+                    backgroundColor: '#ccc',
+                    borderRadius:3,
+                    anchor: 'start',
+                    font: {
+                        color: 'red',
+                        weight: 'bold',
+                    },
+                },
+                legend:{
+                    display: false,
+                }
+            }
+            JS;
+        return $js;
+    }
+
+    public function getChartJsDoughnutOptionsJs(string $js):string {
+        $label =round(floatval($this->answers->first()->avg), 2);
+        $js=<<<JS
+            scales: {
+                x:{
+                    grid:{
+                        display:false,
+                    },
+                    ticks:{
+                        display:false,
+                    }
+                },
+                y:{
+                    grid:{
+                        display:false,
+                    },
+                    ticks:{
+                        display:false,
+                    }
+                }
+            },
+            plugins:{
+                datalabels: false,
+                doughnutLabel:{
+                    label: '$label',
+                }
+            }
+        JS;
+        return $js;
     }
 
     public function getChartJsBarOptionsArray(array $options):array{
@@ -223,6 +276,16 @@ class AnswersChartData extends Data
 
     public function getChartJsOptionsJs(): RawJs
     {
+        
+        $js='';
+        $chartjs_type=$this->getChartJsType();
+        $method='getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsJs';
+        $js=$this->{$method}($js);
+ 
+        return RawJs::make('{
+            '.$js.'
+            }');
+        /*
         return RawJs::make(<<<JS
             {
                 scales: {
@@ -234,5 +297,6 @@ class AnswersChartData extends Data
                 },
             }
         JS);
+        */
     }
 }
