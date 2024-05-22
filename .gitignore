@@ -1,7 +1,3 @@
-/vendor
-*.lock
-/build
-.git-rewrite
 /vendor/
 node_modules/
 npm-debug.log
@@ -25,15 +21,3 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
-.git-blame-ignore-revs
-.php-cs-fixer.cache
-*.phar
-*.lock
-.git-blame-ignore-revs
-package-lock.json
-.php-cs-fixer.cache
-package-lock.json
-.git-rewrite/
-.php-cs-fixer.cache
-node_modules
-.php-cs-fixer.cache
