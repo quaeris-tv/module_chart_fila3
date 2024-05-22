@@ -198,7 +198,7 @@ class AnswersChartData extends Data
         $title = '{}';
 
         $labels = '{}';
-        if(count($this->getChartJsData()['datasets']) == 1){
+        if(count($this->getChartJsData()['datasets']) == 1 && $this->chart->type !== 'horizbar1'){
             $labels = "{
                 name: {
                     align: 'center',
@@ -241,6 +241,23 @@ class AnswersChartData extends Data
                     }"
                 ;
         }
+        $tooltip = '{}';
+        if($this->chart->type === 'bar2' && count($this->getChartJsData()['datasets']) == 1){
+            $tooltip = "{
+                callbacks: {
+                    label: function(context) {
+                        console.log(context);
+                        let label = (context.dataset.label || '')  + ':' + (context.dataset.data[context.dataIndex]) || '';
+
+                        if(context.dataset.data2[context.dataIndex] != ''){
+                            label = label + '/' +' Rispondenti'  + ':' + (context.dataset.data2[context.dataIndex]) || '';
+                        }
+                        return label;
+                    }
+                }
+            }";
+        }
+
 
         $js.=<<<JS
             plugins: {
@@ -262,6 +279,7 @@ class AnswersChartData extends Data
                 legend:{
                     display: false,
                 },
+                tooltip: $tooltip
             },
 
             indexAxis: '$indexAxis'
