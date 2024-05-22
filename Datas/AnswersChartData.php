@@ -205,14 +205,14 @@ class AnswersChartData extends Data
                     formatter: function(value, ctx) {
                         return ctx.dataset.data2[ctx.dataIndex];
                     },
-                    borderColor: 'white',
+
                     borderWidth: 2,
                     borderRadius: 4,
                     padding: 4
                 },
                 value: {
                     align: 'bottom',
-                    borderColor: 'white',
+
                     borderWidth: 2,
                     borderRadius: 4,
                     padding: 4
@@ -246,7 +246,7 @@ class AnswersChartData extends Data
             $tooltip = "{
                 callbacks: {
                     label: function(context) {
-                        console.log(context);
+                        // console.log(context);
                         let label = (context.dataset.label || '')  + ':' + (context.dataset.data[context.dataIndex]) || '';
 
                         if(context.dataset.data2[context.dataIndex] != ''){
