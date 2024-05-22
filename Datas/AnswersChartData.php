@@ -64,7 +64,7 @@ class AnswersChartData extends Data
         $data = $this->answers->toCollection()->pluck('value')->all();
 
         // if($this->chart->type != 'pieAvg'){
-        //     dddx($this->answers->toCollection()->pluck('value')->all());
+            // dddx($this->answers->toCollection());
         // }
 
         if (in_array($this->chart->type, ['pieAvg', 'pie1'], false)) {
@@ -186,7 +186,7 @@ class AnswersChartData extends Data
     public function getChartJsBarOptionsJs(string $js):string {
         $indexAxis = 'x';
         $value = '';
-        // dddx($this->chart->max);
+
         if ($this->chart->max === 100.0) {
             $value = ' %';
         }
@@ -194,11 +194,49 @@ class AnswersChartData extends Data
             $indexAxis = 'y';
             $value = ' %';
         }
+
+        $title = '{}';
+
+        $labels = '{}';
+        if(count($this->getChartJsData()['datasets']) == 1){
+            $labels = "{
+                name: {
+                    align: 'center',
+                    formatter: function(value, ctx) {
+                        return ctx.dataset.data2[ctx.dataIndex];
+                    },
+                    borderColor: 'white',
+                    borderWidth: 2,
+                    borderRadius: 4,
+                    padding: 4
+                },
+                value: {
+                    align: 'bottom',
+                    borderColor: 'white',
+                    borderWidth: 2,
+                    borderRadius: 4,
+                    padding: 4
+                }
+            }";
+        }
+
+        $title = '{}';
+        if ($this->footer !== 'no_set') {
+            $title ="{
+                        display: true,
+                        text: '".$this->footer."',
+                        position: 'bottom',
+                    }"
+                ;
+        }
+
+
         // dddx($this->chart->type);
         // if ($this->chart->type === 'horizbar1') {
-            $js=<<<JS
+            $js.=<<<JS
                 plugins: {
-                    datalabels:{
+                    title: $title
+                    ,datalabels:{
                         formatter: function(value, context) {
                             return value+'$value';
                         },
@@ -210,32 +248,18 @@ class AnswersChartData extends Data
                             color: 'red',
                             weight: 'bold',
                         },
+                        labels: $labels
                     },
                     legend:{
                         display: false,
                     },
 
-                    // come faccio ad aggiungerlo solo quando mi serve?
 
-                    //             labels: {
-                    //                 name: {
-                    //                     align: 'center',
-                    //                     formatter: function(value, ctx) {
-                    //                         return ctx.dataset.data2[ctx.dataIndex];
-                    //                     },
-                    //                     borderColor: 'white',
-                    //                     borderWidth: 2,
-                    //                     borderRadius: 4,
-                    //                     padding: 4
-                    //                 },
-                    //                 value: {
-                    //                     align: 'bottom',
-                    //                     borderColor: 'white',
-                    //                     borderWidth: 2,
-                    //                     borderRadius: 4,
-                    //                     padding: 4
-                    //                 }
-                    //             }
+
+
+                    
+
+
                 },
 
                 indexAxis: '$indexAxis'
@@ -350,6 +374,20 @@ class AnswersChartData extends Data
     }
 
     public function getChartJsDoughnutOptionsJs(string $js):string {
+
+        $title = '{}';
+        if ($this->title !== 'no_set') {
+            $title ="{
+                        display: true,
+                        text: '".$this->title."',
+                        font: {
+                            size: 14
+                        },
+                    }"
+                ;
+        }
+
+
         $label =round(floatval($this->answers->first()->avg), 2);
         $js=<<<JS
             scales: {
@@ -371,7 +409,8 @@ class AnswersChartData extends Data
                 }
             },
             plugins:{
-                datalabels: false,
+                title: $title
+                ,datalabels: false,
                 doughnutLabel:{
                     label: '$label',
                 }
@@ -430,8 +469,42 @@ class AnswersChartData extends Data
 
     public function getChartJsOptionsJs(): RawJs
     {
-        
+
+        // dddx($this);
+
         $js='';
+
+
+
+        // if ($this->footer !== 'no_set') {
+
+        //     $text = $this->footer;
+
+        //     $js .= <<<JS
+        //         title: {
+        //             display: true,
+        //             text: '$text',
+        //             position: 'bottom'
+        //         }
+        //         JS;
+
+
+
+        //     $title = [
+        //         'display' => true,
+        //         'text' => $this->footer,
+        //         'position' => 'bottom',
+        //     ];
+        // }
+
+        // $options['plugins'] = [
+        //     'title' => $title,
+        // ];
+
+
+
+        
+
         $chartjs_type=$this->getChartJsType();
         $method='getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsJs';
         $js=$this->{$method}($js);
