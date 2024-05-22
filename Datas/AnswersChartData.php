@@ -221,6 +221,18 @@ class AnswersChartData extends Data
         }
 
         $title = '{}';
+        // dddx($this);
+        if ($this->title !== 'no_set' && $this->chart->type === 'horizbar1') {
+            $title ="{
+                        display: true,
+                        text: '".$this->title."',
+                        font: {
+                            size: 14
+                        },
+                    }"
+                ;
+        }
+
         if ($this->footer !== 'no_set') {
             $title ="{
                         display: true,
@@ -230,41 +242,30 @@ class AnswersChartData extends Data
                 ;
         }
 
-
-        // dddx($this->chart->type);
-        // if ($this->chart->type === 'horizbar1') {
-            $js.=<<<JS
-                plugins: {
-                    title: $title
-                    ,datalabels:{
-                        formatter: function(value, context) {
-                            return value+'$value';
-                        },
-                        display: true,
-                        backgroundColor: '#ccc',
-                        borderRadius:3,
-                        anchor: 'start',
-                        font: {
-                            color: 'red',
-                            weight: 'bold',
-                        },
-                        labels: $labels
+        $js.=<<<JS
+            plugins: {
+                title: $title
+                ,datalabels:{
+                    formatter: function(value, context) {
+                        return value+'$value';
                     },
-                    legend:{
-                        display: false,
+                    display: true,
+                    backgroundColor: '#ccc',
+                    borderRadius:3,
+                    anchor: 'start',
+                    font: {
+                        color: 'red',
+                        weight: 'bold',
                     },
-
-
-
-
-                    
-
-
+                    labels: $labels
                 },
+                legend:{
+                    display: false,
+                },
+            },
 
-                indexAxis: '$indexAxis'
-                JS;
-        // }
+            indexAxis: '$indexAxis'
+            JS;
 
 
         
@@ -469,42 +470,7 @@ class AnswersChartData extends Data
 
     public function getChartJsOptionsJs(): RawJs
     {
-
-        // dddx($this);
-
         $js='';
-
-
-
-        // if ($this->footer !== 'no_set') {
-
-        //     $text = $this->footer;
-
-        //     $js .= <<<JS
-        //         title: {
-        //             display: true,
-        //             text: '$text',
-        //             position: 'bottom'
-        //         }
-        //         JS;
-
-
-
-        //     $title = [
-        //         'display' => true,
-        //         'text' => $this->footer,
-        //         'position' => 'bottom',
-        //     ];
-        // }
-
-        // $options['plugins'] = [
-        //     'title' => $title,
-        // ];
-
-
-
-        
-
         $chartjs_type=$this->getChartJsType();
         $method='getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsJs';
         $js=$this->{$method}($js);
