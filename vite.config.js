@@ -3,8 +3,8 @@ import laravel, { refreshPaths } from 'laravel-vite-plugin'
 
 export default defineConfig({
     build: {
-        outDir: '../../../public_html/assets/chart',
-        //outDir: './Resources/dist',
+        //outDir: '../../../public_html/assets/chart',
+        outDir: './Resources/dist',
         emptyOutDir: false,
         manifest: "manifest.json",
         /*rollupOptions: {
