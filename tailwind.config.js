@@ -6,6 +6,10 @@ module.exports = {
     '../../vendor/filament/**/*.blade.php',
     '../../vendor/awcodes/overlook/resources/**/*.blade.php',
     '../../Modules/**/*.php',
+    '../../Modules/Resources/**/*.php',
+    '../../Modules/Http/**/*.php',
+    '../../Modules/Filament/**/*.php',
+    '../../Modules/View/**/*.php',
   ],
   theme: {
     extend: {},
