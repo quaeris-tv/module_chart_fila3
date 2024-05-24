@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Chart\Filament\Pages;
 
 use Filament\Pages\Page;
+use Modules\Chart\Filament\Widgets\Samples as WidgetsSamples;
 
 class Dashboard extends Page
 {
@@ -20,4 +21,15 @@ class Dashboard extends Page
         }
     }
     */
+
+    public function getHeaderWidgets(): array
+    {
+        return [
+            WidgetsSamples\Bar02Chart::make(),
+            WidgetsSamples\OverlookWidget::make(),
+            WidgetsSamples\Doughnut01Chart::make(),
+            WidgetsSamples\Sample01Chart::make(),
+
+        ];
+    }
 }

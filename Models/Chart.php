@@ -237,12 +237,12 @@ class Chart extends BaseModel
 
     public function getSettings(): array
     {
-        Assert::notNull($this->type);
+        Assert::notNull($this->type, '['.__FILE__.']['.__LINE__.']');
         if (Str::startsWith($this->type, 'mixed')) {
             $parz = \array_slice(explode(':', $this->type), 1);
             $mixed_id = implode('|', $parz);
             $mixed = MixedChart::firstWhere(['id' => $mixed_id]);
-            Assert::notNull($mixed);
+            Assert::notNull($mixed, '['.__FILE__.']['.__LINE__.']');
             Assert::isInstanceof($mixed->charts, Collection::class);
 
             return $mixed->charts->toArray();

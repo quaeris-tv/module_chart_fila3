@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Datas;
 
+use Filament\Support\RawJs;
+use Illuminate\Support\Str;
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\DataCollection;
 use Webmozart\Assert\Assert;
+use Spatie\LaravelData\DataCollection;
 
 class AnswersChartData extends Data
 {
@@ -31,13 +33,8 @@ class AnswersChartData extends Data
     {
         $type = $this->chart->type;
         switch ($type) {
-            case 'pieAvg': // questa è una media ha un solo valore
-                $type = 'doughnut';
-                break;
-            case 'horizbar1':
-                $type = 'bar';
-                break;
             case 'pie1':
+            case 'pieAvg': // questa è una media ha un solo valore
                 $type = 'doughnut';
                 break;
             case 'lineSubQuestion':
@@ -46,6 +43,7 @@ class AnswersChartData extends Data
             case 'bar2':
             case 'bar1':
             case 'bar3':
+            case 'horizbar1':
                 $type = 'bar';
                 break;
 
@@ -64,6 +62,10 @@ class AnswersChartData extends Data
     {
         $datasets = [];
         $data = $this->answers->toCollection()->pluck('value')->all();
+
+        // if($this->chart->type != 'pieAvg'){
+            // dddx($this->answers->toCollection());
+        // }
 
         if (in_array($this->chart->type, ['pieAvg', 'pie1'], false)) {
             $data = $this->answers->toCollection()->pluck('avg')->all();
@@ -105,7 +107,7 @@ class AnswersChartData extends Data
                 if ($other > 0.01) {
                     $data[] = $other;
                     $labels[] = $this->chart->answer_value_no_txt ?? 'answer_value_no_txt';
-                    Assert::notNull($labels[0]);
+                    Assert::notNull($labels[0], '['.__FILE__.']['.__LINE__.']');
                     if (\count($labels) === 2 && \strlen($labels[0]) < 3) {
                         $labels[0] = $this->chart->answer_value_txt;
                     }
@@ -123,11 +125,17 @@ class AnswersChartData extends Data
                     // 'label' => ['Percentuale'],
                     'label' => [$label],
                     'data' => $data,
+                    'data2' => $this->answers->toCollection()->pluck('value')->all(),
                     'borderColor' => $this->chart->getColorsRgba(0.2),
                     'backgroundColor' => $this->chart->getColorsRgba(0.2),
                 ],
             ];
         }
+
+        // dddx([
+        //     'datasets' => $datasets,
+        //     'labels' => $this->answers->toCollection()->pluck('label')->all(),
+        // ]);
 
         return [
             'datasets' => $datasets,
@@ -136,6 +144,384 @@ class AnswersChartData extends Data
         ];
     }
 
+    public function getChartJsOptionsArray(): array
+    {
+        $title = [];
+
+        if ($this->title !== 'no_set') {
+            $title = [
+                'display' => true,
+                'text' => $this->title,
+                'font' => [
+                    'size' => 14,
+                ],
+            ];
+        }
+
+        if ($this->footer !== 'no_set') {
+            $title = [
+                'display' => true,
+                'text' => $this->footer,
+                'position' => 'bottom',
+            ];
+        }
+
+        $options['plugins'] = [
+            'title' => $title,
+        ];
+
+        if ($this->chart->type === 'horizbar1') {
+            $options['indexAxis'] = 'y';
+        }
+
+        $chartjs_type=$this->getChartJsType();
+        $method='getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsArray';
+        $options=$this->{$method}($options);
+        return $options;
+
+        
+    }
+
+
+    public function getChartJsBarOptionsJs(string $js):string {
+        $indexAxis = 'x';
+        $value = '';
+
+        if ($this->chart->max === 100.0) {
+            $value = ' %';
+        }
+        if ($this->chart->type === 'horizbar1') {
+            $indexAxis = 'y';
+            $value = ' %';
+        }
+
+        $title = '{}';
+
+        $labels = '{}';
+        if(count($this->getChartJsData()['datasets']) == 1 && $this->chart->type !== 'horizbar1'){
+            $labels = "{
+                name: {
+                    align: 'center',
+                    formatter: function(value, ctx) {
+                        return ctx.dataset.data2[ctx.dataIndex];
+                    },
+                    font: {
+                        size: 13,
+                    },
+                    borderWidth: 2,
+                    borderRadius: 4,
+                    padding: 4
+                },
+                value: {
+                    align: 'bottom',
+                    font: {
+                        size: 13
+                    },
+                    borderWidth: 2,
+                    borderRadius: 4,
+                    padding: 4
+                }
+            }";
+        }
+
+        $title = '{}';
+        // dddx($this);
+        if ($this->title !== 'no_set' && $this->chart->type === 'horizbar1') {
+            $title ="{
+                        display: true,
+                        text: '".$this->title."',
+                        font: {
+                            size: 14
+                        },
+                    }"
+                ;
+        }
+
+        if ($this->footer !== 'no_set') {
+            $title ="{
+                        display: true,
+                        text: '".$this->footer."',
+                        position: 'bottom',
+                    }"
+                ;
+        }
+        $tooltip = '{}';
+        if($this->chart->type === 'bar2' && count($this->getChartJsData()['datasets']) == 1){
+            $tooltip = "{
+                callbacks: {
+                    label: function(context) {
+                        // console.log(context);
+                        let label = (context.dataset.label || '')  + ':' + (context.dataset.data[context.dataIndex]) || '';
+
+                        if(context.dataset.data2[context.dataIndex] != ''){
+                            label = label + '/' +' Rispondenti'  + ':' + (context.dataset.data2[context.dataIndex]) || '';
+                        }
+                        return label;
+                    }
+                }
+            }";
+        }
+
+
+        $js.=<<<JS
+            plugins: {
+                title: $title
+                ,datalabels:{
+                    formatter: function(value, context) {
+                        return value+'$value';
+                    },
+                    display: true,
+                    backgroundColor: '#ccc',
+                    borderRadius:3,
+                    anchor: 'start',
+                    font: {
+                        color: 'red',
+                        weight: 'bold',
+                    },
+                    labels: $labels
+                },
+                legend:{
+                    display: false,
+                },
+                tooltip: $tooltip
+            },
+
+            indexAxis: '$indexAxis'
+            JS;
+
+
+        
+        // if($this->chart->type === 'bar2'){
+            // $js=<<<JS
+            //     plugins: {
+            //         datalabels:{
+            //             display: true,
+            //             backgroundColor: '#ccc',
+            //             borderRadius:3,
+            //             anchor: 'start',
+            //             font: {
+            //                 color: 'red',
+            //                 weight: 'bold',
+            //             },
+            //             labels: {
+            //                 name: {
+            //                     align: 'center',
+            //                     formatter: function(value, ctx) {
+            //                         return ctx.dataset.data2[ctx.dataIndex];
+            //                     },
+            //                     borderColor: 'white',
+            //                     borderWidth: 2,
+            //                     borderRadius: 4,
+            //                     padding: 4
+            //                 },
+            //                 value: {
+            //                     align: 'bottom',
+            //                     borderColor: 'white',
+            //                     borderWidth: 2,
+            //                     borderRadius: 4,
+            //                     padding: 4
+            //                 }
+            //             }
+            //         },
+            //         legend:{
+            //             display: false,
+            //         },
+            //     },
+            //     indexAxis: '$indexAxis'
+            //     JS;
+        // }
+
+        // $js .= <<<JS
+            // tooltip: {
+            //     callbacks: {
+            //         label: function(context) {
+            //             let label = context.dataset.label || '';
+
+            //             return label + '!';
+            //         }
+            //     }
+            // }
+        //     JS;
+
+        // $js .= <<<JS
+        //     ,scales: {
+        //             y: {
+        //                 ticks: {
+        //                     callback: (value) => '€' + value,
+        //                 },
+        //             },
+        //         },
+
+        //     JS;
+
+        
+        // prova divisione label in più righe
+
+        // $js .= <<<JS
+        //     ,scales: {
+        //         x: {
+        //             ticks: {
+        //                 callback: function(value, context) {
+        //                     console.log(context.labels);
+        //                     var label = this.getLabelForValue(value);
+        //                     var maxLength = 10; // Numero massimo di caratteri per riga
+        //                     var words = label.split(' ');
+        //                     var lines = [];
+        //                     var currentLine = '';
+
+        //                     words.forEach(function(word) {
+        //                         if (currentLine.length + word.length + 1 <= maxLength) {
+        //                             currentLine += (currentLine ? ' ' : '') + word;
+        //                         } else {
+        //                             lines.push(currentLine);
+        //                             currentLine = word;
+        //                         }
+        //                     });
+
+        //                     lines.push(currentLine); // Aggiungi l'ultima riga
+        //                     return lines.join('AAA');
+        //                 }
+        //             },
+        //         },
+        //     },
+        // JS;
+
+
+
+
+        
+
+        
+        // dddx($js);
+        return $js;
+    }
+
+    public function getChartJsDoughnutOptionsJs(string $js):string {
+
+        $title = '{}';
+        if ($this->title !== 'no_set') {
+            $title ="{
+                        display: true,
+                        text: '".$this->title."',
+                        font: {
+                            size: 14
+                        },
+                    }"
+                ;
+        }
+
+
+        $label =round(floatval($this->answers->first()->avg), 2);
+        $js=<<<JS
+            scales: {
+                x:{
+                    grid:{
+                        display:false,
+                    },
+                    ticks:{
+                        display:false,
+                    }
+                },
+                y:{
+                    grid:{
+                        display:false,
+                    },
+                    ticks:{
+                        display:false,
+                    }
+                }
+            },
+            plugins:{
+                title: $title
+                ,datalabels: false,
+                doughnutLabel:{
+                    label: '$label',
+                }
+            }
+        JS;
+        return $js;
+    }
+
+    public function getChartJsBarOptionsArray(array $options):array{
+        $options['plugins']['datalabels'] = [
+            'display' => true,
+            'backgroundColor' => '#ccc',
+            'borderRadius' => 3,
+            'anchor' => 'start',
+            'font' => [
+              'color' => 'red',
+              'weight' => 'bold',
+            ],
+        ];
+        $options['plugins']['legend'] = [
+            'display' => false,
+        ];
+        return $options;
+    }
+
+    public function getChartJsDoughnutOptionsArray(array $options):array{
+        $options['scales'] = [
+            'x' => [
+                'grid' => [
+                    'display' => false,
+                ],
+                'ticks' => [
+                    'display' => false, // Questa opzione nasconde i numeri sull'asse X
+                ]
+            ],
+            'y' => [
+                'grid' => [
+                    'display' => false,
+                ],
+                'ticks' => [
+                    'display' => false, // Questa opzione nasconde i numeri sull'asse Y
+                ]
+            ]
+        ];
+
+        $options['plugins']['datalabels'] = [
+            'display' => false,
+        ];
+
+        $options['plugins']['doughnutLabel'] = [
+            'label'=> round(floatval($this->answers->first()->avg), 2),
+        ];
+        return $options;
+    }
+
+
+    public function getChartJsOptionsJs(): RawJs
+    {
+        $js='';
+        $chartjs_type=$this->getChartJsType();
+        $method='getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsJs';
+        $js=$this->{$method}($js);
+
+        // dddx(
+        //     RawJs::make('{
+        //         '.$js.'
+        //         }')
+        // );
+ 
+        return RawJs::make('{
+            '.$js.'
+            }');
+        /*
+        return RawJs::make(<<<JS
+            {
+                scales: {
+                    y: {
+                        ticks: {
+                            callback: (value) => '€' + value,
+                        },
+                    },
+                },
+            }
+        JS);
+        */
+    }
+
+    // funzione deprecata, utilizzata nella dashboard precedente
     public function getChartJsOptions(): array
     {
         $title = [];
@@ -166,65 +552,12 @@ class AnswersChartData extends Data
             $options['indexAxis'] = 'y';
         }
 
-        // $options['plugins']['tooltip']['title'] = [
-        //     'display' => true,
-        //     // 'title' => 'prova',
-        //     'text' => 'provaaaa',
-        // ];
-
-        // dddx($options);
+        $chartjs_type=$this->getChartJsType();
+        $method='getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsArray';
+        $options=$this->{$method}($options);
+ 
         return $options;
 
-        // var options = {
-        //     tooltips: {
-        //             callbacks: {
-        //                 label: function(tooltipItem) {
-        //                     return "$" + Number(tooltipItem.yLabel) + " and so worth it !";
-        //                 }
-        //             }
-        //         },
-        //             title: {
-        //                       display: true,
-        //                       text: 'Ice Cream Truck',
-        //                       position: 'bottom'
-        //                   },
-        //             scales: {
-        //                 yAxes: [{
-        //                     ticks: {
-        //                         beginAtZero:true
-        //                     }
-        //                 }]
-        //             }
-        //     };
-
-        // [plugins: [{
-        //     id: "centerText"
-        //     , afterDatasetsDraw(chart, args, options) {
-        //         const {ctx, chartArea: {left, right, top, bottom, width, height}} = chart;
-
-        //         ctx.save();
-
-        //         var fontSize = width * 4.5 / 100;
-        //         var lineHeight = fontSize + (fontSize * {{$take}} / 100);
-
-        //         ctx.font = "bolder " + fontSize + "px Arial";
-        //         ctx.fillStyle = "rgba(0, 0, 0, 1)";
-        //         ctx.textAlign = "center";
-        //         ctx.fillText("{{$average}}", width / 2, (height / 2 + top - (lineHeight)));
-        //         ctx.restore();
-
-        //         ctx.font = fontSize + "px Arial";
-        //         ctx.fillStyle = "rgba(0, 0, 0, 1)";
-        //         ctx.textAlign = "center";
-        //         ctx.fillText("MEDIA", width / 2, (height / 2 + top) + fontSize - lineHeight);
-        //         ctx.restore();
-
-        //         ctx.font = fontSize + "px Arial";
-        //         ctx.fillStyle = "rgba(0, 0, 0, 1)";
-        //         ctx.textAlign = "center";
-        //         ctx.fillText("COMPLESSIVA", width / 2, (height / 2 + top) + fontSize);
-        //         ctx.restore();
-        //     }
-        // }]]
+        
     }
 }
