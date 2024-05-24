@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Chart\Filament\Widgets\Samples;
 
-use Filament\Widgets\ChartWidget;
 use Filament\Support\RawJs;
+use Filament\Widgets\ChartWidget;
 
 class Bar02Chart extends ChartWidget
 {
@@ -14,11 +16,11 @@ class Bar02Chart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    //'label' => 'Blog posts created',
+                    // 'label' => 'Blog posts created',
                     'data' => [50, 60, 70, 180, 190],
                     'backgroundColor' => '#36A2EB',
                     'borderColor' => '#9BD0F5',
-                    'data2' => ['aaa', 'bbbb', 'ccc', 'ddd', 'mmmm']
+                    'data2' => ['aaa', 'bbbb', 'ccc', 'ddd', 'mmmm'],
                 ],
             ],
             'labels' => ['January', 'February', 'March', 'April', 'May'],
@@ -30,14 +32,12 @@ class Bar02Chart extends ChartWidget
         return 'bar';
     }
 
-  
-    
-    //*
+    // *
     protected function getOptions(): RawJs
     {
-        return RawJs::make(<<<JS
+        return RawJs::make(<<<'JS'
             {
-                
+
                 plugins: {
                     legend: {
                         display: false,
@@ -90,7 +90,5 @@ class Bar02Chart extends ChartWidget
             }
         JS);
     }
-    //*/
-    
-
+    // */
 }

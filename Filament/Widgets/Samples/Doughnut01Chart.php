@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Chart\Filament\Widgets\Samples;
 
-use Filament\Widgets\ChartWidget;
 use Filament\Support\RawJs;
+use Filament\Widgets\ChartWidget;
 
 class Doughnut01Chart extends ChartWidget
 {
@@ -36,8 +38,8 @@ class Doughnut01Chart extends ChartWidget
                 'legend' => [
                     'display' => true,
                 ],
-                'doughnutLabel'=>[
-                    'label'=>'sti cazzi !',
+                'doughnutLabel' => [
+                    'label' => 'sti cazzi !',
                 ],
                 'datalabels' => [
                     'display' => false,
@@ -45,8 +47,8 @@ class Doughnut01Chart extends ChartWidget
                     'borderRadius' => 3,
                     'anchor' => 'start',
                     'font' => [
-                      'color' => 'red',
-                      'weight' => 'bold',
+                        'color' => 'red',
+                        'weight' => 'bold',
                     ],
                 ],
             ],
@@ -121,8 +123,4 @@ class Doughnut01Chart extends ChartWidget
         JS);
     }
     */
-
-
-
-
 }

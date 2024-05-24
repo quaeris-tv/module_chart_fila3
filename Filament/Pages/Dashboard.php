@@ -29,7 +29,6 @@ class Dashboard extends Page
             WidgetsSamples\OverlookWidget::make(),
             WidgetsSamples\Doughnut01Chart::make(),
             WidgetsSamples\Sample01Chart::make(),
-
         ];
     }
 }

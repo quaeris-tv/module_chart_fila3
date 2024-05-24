@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Chart\Filament\Widgets\Samples;
 
-use Filament\Widgets\ChartWidget;
 use Filament\Support\RawJs;
+use Filament\Widgets\ChartWidget;
 
 class Sample01Chart extends ChartWidget
 {
@@ -14,11 +16,11 @@ class Sample01Chart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    //'label' => 'Blog posts created',
+                    // 'label' => 'Blog posts created',
                     'data' => [50, 60, 70, 180, 190],
                     'backgroundColor' => '#36A2EB',
                     'borderColor' => '#9BD0F5',
-                    'data2' => ['aaa', 'bbbb', 'ccc', 'ddd', 'mmmm']
+                    'data2' => ['aaa', 'bbbb', 'ccc', 'ddd', 'mmmm'],
                 ],
             ],
             'labels' => ['January', 'February', 'March', 'April', 'May'],
@@ -37,18 +39,18 @@ class Sample01Chart extends ChartWidget
                 'legend' => [
                     'display' => false,
                 ],
-                //'tooltipNote'=> [
+                // 'tooltipNote'=> [
                 //    'display' => true,
-                //],
-                //'doughnutLabel' => false,
+                // ],
+                // 'doughnutLabel' => false,
                 'datalabels' => [
                     'display' => true,
                     'backgroundColor' => '#ccc',
                     'borderRadius' => 3,
                     'anchor' => 'start',
                     'font' => [
-                      'color' => 'red',
-                      'weight' => 'bold',
+                        'color' => 'red',
+                        'weight' => 'bold',
                     ],
                     'labels' => [
                         'name' => [
@@ -80,9 +82,9 @@ class Sample01Chart extends ChartWidget
                             //     ? 'value'
                             //     : Math.round(value * 1000) / 1000;
                             // },
-                            'padding' => 4
-                        ]
-                    ]
+                            'padding' => 4,
+                        ],
+                    ],
                 ],
             ],
         ];
@@ -156,8 +158,4 @@ class Sample01Chart extends ChartWidget
         JS);
     }
     */
-
-
-
-
 }

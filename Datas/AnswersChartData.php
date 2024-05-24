@@ -7,8 +7,8 @@ namespace Modules\Chart\Datas;
 use Filament\Support\RawJs;
 use Illuminate\Support\Str;
 use Spatie\LaravelData\Data;
-use Webmozart\Assert\Assert;
 use Spatie\LaravelData\DataCollection;
+use Webmozart\Assert\Assert;
 
 class AnswersChartData extends Data
 {
@@ -64,7 +64,7 @@ class AnswersChartData extends Data
         $data = $this->answers->toCollection()->pluck('value')->all();
 
         // if($this->chart->type != 'pieAvg'){
-            // dddx($this->answers->toCollection());
+        // dddx($this->answers->toCollection());
         // }
 
         if (in_array($this->chart->type, ['pieAvg', 'pie1'], false)) {
@@ -174,16 +174,15 @@ class AnswersChartData extends Data
             $options['indexAxis'] = 'y';
         }
 
-        $chartjs_type=$this->getChartJsType();
-        $method='getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsArray';
-        $options=$this->{$method}($options);
-        return $options;
+        $chartjs_type = $this->getChartJsType();
+        $method = 'getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsArray';
+        $options = $this->{$method}($options);
 
-        
+        return $options;
     }
 
-
-    public function getChartJsBarOptionsJs(string $js):string {
+    public function getChartJsBarOptionsJs(string $js): string
+    {
         $indexAxis = 'x';
         $value = '';
 
@@ -198,7 +197,7 @@ class AnswersChartData extends Data
         $title = '{}';
 
         $labels = '{}';
-        if(count($this->getChartJsData()['datasets']) == 1 && $this->chart->type !== 'horizbar1'){
+        if (count($this->getChartJsData()['datasets']) == 1 && $this->chart->type !== 'horizbar1') {
             $labels = "{
                 name: {
                     align: 'center',
@@ -227,26 +226,24 @@ class AnswersChartData extends Data
         $title = '{}';
         // dddx($this);
         if ($this->title !== 'no_set' && $this->chart->type === 'horizbar1') {
-            $title ="{
+            $title = "{
                         display: true,
                         text: '".$this->title."',
                         font: {
                             size: 14
                         },
-                    }"
-                ;
+                    }";
         }
 
         if ($this->footer !== 'no_set') {
-            $title ="{
+            $title = "{
                         display: true,
                         text: '".$this->footer."',
                         position: 'bottom',
-                    }"
-                ;
+                    }";
         }
         $tooltip = '{}';
-        if($this->chart->type === 'bar2' && count($this->getChartJsData()['datasets']) == 1){
+        if ($this->chart->type === 'bar2' && count($this->getChartJsData()['datasets']) == 1) {
             $tooltip = "{
                 callbacks: {
                     label: function(context) {
@@ -262,8 +259,7 @@ class AnswersChartData extends Data
             }";
         }
 
-
-        $js.=<<<JS
+        $js .= <<<JS
             plugins: {
                 title: $title
                 ,datalabels:{
@@ -289,58 +285,56 @@ class AnswersChartData extends Data
             indexAxis: '$indexAxis'
             JS;
 
-
-        
         // if($this->chart->type === 'bar2'){
-            // $js=<<<JS
-            //     plugins: {
-            //         datalabels:{
-            //             display: true,
-            //             backgroundColor: '#ccc',
-            //             borderRadius:3,
-            //             anchor: 'start',
-            //             font: {
-            //                 color: 'red',
-            //                 weight: 'bold',
-            //             },
-            //             labels: {
-            //                 name: {
-            //                     align: 'center',
-            //                     formatter: function(value, ctx) {
-            //                         return ctx.dataset.data2[ctx.dataIndex];
-            //                     },
-            //                     borderColor: 'white',
-            //                     borderWidth: 2,
-            //                     borderRadius: 4,
-            //                     padding: 4
-            //                 },
-            //                 value: {
-            //                     align: 'bottom',
-            //                     borderColor: 'white',
-            //                     borderWidth: 2,
-            //                     borderRadius: 4,
-            //                     padding: 4
-            //                 }
-            //             }
-            //         },
-            //         legend:{
-            //             display: false,
-            //         },
-            //     },
-            //     indexAxis: '$indexAxis'
-            //     JS;
+        // $js=<<<JS
+        //     plugins: {
+        //         datalabels:{
+        //             display: true,
+        //             backgroundColor: '#ccc',
+        //             borderRadius:3,
+        //             anchor: 'start',
+        //             font: {
+        //                 color: 'red',
+        //                 weight: 'bold',
+        //             },
+        //             labels: {
+        //                 name: {
+        //                     align: 'center',
+        //                     formatter: function(value, ctx) {
+        //                         return ctx.dataset.data2[ctx.dataIndex];
+        //                     },
+        //                     borderColor: 'white',
+        //                     borderWidth: 2,
+        //                     borderRadius: 4,
+        //                     padding: 4
+        //                 },
+        //                 value: {
+        //                     align: 'bottom',
+        //                     borderColor: 'white',
+        //                     borderWidth: 2,
+        //                     borderRadius: 4,
+        //                     padding: 4
+        //                 }
+        //             }
+        //         },
+        //         legend:{
+        //             display: false,
+        //         },
+        //     },
+        //     indexAxis: '$indexAxis'
+        //     JS;
         // }
 
         // $js .= <<<JS
-            // tooltip: {
-            //     callbacks: {
-            //         label: function(context) {
-            //             let label = context.dataset.label || '';
+        // tooltip: {
+        //     callbacks: {
+        //         label: function(context) {
+        //             let label = context.dataset.label || '';
 
-            //             return label + '!';
-            //         }
-            //     }
-            // }
+        //             return label + '!';
+        //         }
+        //     }
+        // }
         //     JS;
 
         // $js .= <<<JS
@@ -354,7 +348,6 @@ class AnswersChartData extends Data
 
         //     JS;
 
-        
         // prova divisione label in più righe
 
         // $js .= <<<JS
@@ -386,33 +379,25 @@ class AnswersChartData extends Data
         //     },
         // JS;
 
-
-
-
-        
-
-        
         // dddx($js);
         return $js;
     }
 
-    public function getChartJsDoughnutOptionsJs(string $js):string {
-
+    public function getChartJsDoughnutOptionsJs(string $js): string
+    {
         $title = '{}';
         if ($this->title !== 'no_set') {
-            $title ="{
+            $title = "{
                         display: true,
                         text: '".$this->title."',
                         font: {
                             size: 14
                         },
-                    }"
-                ;
+                    }";
         }
 
-
-        $label =round(floatval($this->answers->first()->avg), 2);
-        $js=<<<JS
+        $label = round(floatval($this->answers->first()->avg), 2);
+        $js = <<<JS
             scales: {
                 x:{
                     grid:{
@@ -439,27 +424,31 @@ class AnswersChartData extends Data
                 }
             }
         JS;
+
         return $js;
     }
 
-    public function getChartJsBarOptionsArray(array $options):array{
+    public function getChartJsBarOptionsArray(array $options): array
+    {
         $options['plugins']['datalabels'] = [
             'display' => true,
             'backgroundColor' => '#ccc',
             'borderRadius' => 3,
             'anchor' => 'start',
             'font' => [
-              'color' => 'red',
-              'weight' => 'bold',
+                'color' => 'red',
+                'weight' => 'bold',
             ],
         ];
         $options['plugins']['legend'] = [
             'display' => false,
         ];
+
         return $options;
     }
 
-    public function getChartJsDoughnutOptionsArray(array $options):array{
+    public function getChartJsDoughnutOptionsArray(array $options): array
+    {
         $options['scales'] = [
             'x' => [
                 'grid' => [
@@ -467,7 +456,7 @@ class AnswersChartData extends Data
                 ],
                 'ticks' => [
                     'display' => false, // Questa opzione nasconde i numeri sull'asse X
-                ]
+                ],
             ],
             'y' => [
                 'grid' => [
@@ -475,8 +464,8 @@ class AnswersChartData extends Data
                 ],
                 'ticks' => [
                     'display' => false, // Questa opzione nasconde i numeri sull'asse Y
-                ]
-            ]
+                ],
+            ],
         ];
 
         $options['plugins']['datalabels'] = [
@@ -484,25 +473,25 @@ class AnswersChartData extends Data
         ];
 
         $options['plugins']['doughnutLabel'] = [
-            'label'=> round(floatval($this->answers->first()->avg), 2),
+            'label' => round(floatval($this->answers->first()->avg), 2),
         ];
+
         return $options;
     }
 
-
     public function getChartJsOptionsJs(): RawJs
     {
-        $js='';
-        $chartjs_type=$this->getChartJsType();
-        $method='getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsJs';
-        $js=$this->{$method}($js);
+        $js = '';
+        $chartjs_type = $this->getChartJsType();
+        $method = 'getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsJs';
+        $js = $this->{$method}($js);
 
         // dddx(
         //     RawJs::make('{
         //         '.$js.'
         //         }')
         // );
- 
+
         return RawJs::make('{
             '.$js.'
             }');
@@ -552,12 +541,10 @@ class AnswersChartData extends Data
             $options['indexAxis'] = 'y';
         }
 
-        $chartjs_type=$this->getChartJsType();
-        $method='getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsArray';
-        $options=$this->{$method}($options);
- 
-        return $options;
+        $chartjs_type = $this->getChartJsType();
+        $method = 'getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsArray';
+        $options = $this->{$method}($options);
 
-        
+        return $options;
     }
 }
