@@ -205,14 +205,18 @@ class AnswersChartData extends Data
                     formatter: function(value, ctx) {
                         return ctx.dataset.data2[ctx.dataIndex];
                     },
-
+                    font: {
+                        size: 13,
+                    },
                     borderWidth: 2,
                     borderRadius: 4,
                     padding: 4
                 },
                 value: {
                     align: 'bottom',
-
+                    font: {
+                        size: 13
+                    },
                     borderWidth: 2,
                     borderRadius: 4,
                     padding: 4
