@@ -396,7 +396,7 @@ class AnswersChartData extends Data
                     }";
         }
 
-        $label = round(floatval($this->answers->first()->avg), 2);
+        $label = round(floatval($this->answers->first()?->avg), 2);
         $js = <<<JS
             scales: {
                 x:{
