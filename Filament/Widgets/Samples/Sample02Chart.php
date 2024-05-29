@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Chart\Filament\Widgets\Samples;
 
 use Filament\Widgets\ChartWidget;
-use Filament\Support\RawJs;
 
 class Sample02Chart extends ChartWidget
 {
@@ -27,7 +28,6 @@ class Sample02Chart extends ChartWidget
         return 'bar';
     }
 
-
     protected function getOptions(): array
     {
         return [
@@ -41,8 +41,8 @@ class Sample02Chart extends ChartWidget
                     'borderRadius' => 3,
                     'anchor' => 'start',
                     'font' => [
-                      'color' => 'red',
-                      'weight' => 'bold',
+                        'color' => 'red',
+                        'weight' => 'bold',
                     ],
                 ],
             ],
