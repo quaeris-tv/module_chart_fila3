@@ -49,7 +49,7 @@
                             <x-filament::icon
                                 :icon="$resource['icon']"
                                 :size="24"
-                                class="absolute left-0 w-auto transition text-primary-500 h-36 z-1 overlook-icon -bottom-12 opacity-10 dark:opacity-10 group-hover:scale-110 group-hover:-rotate-12 group-hover:opacity-30"
+                                class="absolute w-auto transition left-2 text-primary-500 h-36 z-1 overlook-icon -bottom-12 opacity-10 dark:opacity-10 group-hover:scale-110 group-hover:-rotate-12 group-hover:opacity-30"
                             />
                         @endif
                     </x-filament::section>

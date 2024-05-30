@@ -103,7 +103,7 @@ class OverlookV2Widget extends Widget
                     'name' => $title,
                     'raw_count' => $this->formatRawcount($rawCount),
                     'count' => $this->convertCount($rawCount),
-                    'icon' => $customIcon ?: $res->getNavigationIcon(),
+                    'icon' => $customIcon ?: 'heroicon-o-envelope',
                     'url' => $res->getUrl('index'),
                 ];
             }
