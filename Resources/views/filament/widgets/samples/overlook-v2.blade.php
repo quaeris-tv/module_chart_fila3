@@ -19,26 +19,27 @@
                         <div class="relative z-10">
                             <div class="text-center overlook-name ">{{ $resource['name'] }}</div>
                             {{-- <div class="absolute text-3xl font-bold leading-none text-gray-600 overlook-count dark:text-gray-300 bottom-3 right-4">{{ $resource['count'] }}</div> --}}
-                            <div class="py-4">
-                                <h3 class="text-lg font-bold">2,318,589</h3>
-                                <div class="flex items-center space-x-1 text-gray-400">
-                                    <x-heroicon-o-eye class="size-4" />
-                                    <span class="text-sm">Post views</span>
-                                </div>
-                            </div>
-                            <hr class="mb-4 opacity-30"/>
-                            <div class="grid gap-6 sm:grid-cols-2">
-                                <div>
-                                    <h4>412</h4>
+                            <div class="grid items-center sm:gap-6 sm:grid-cols-2">
+                                <div class="py-4">
+                                    <h3 class="text-lg font-bold">2,318,589</h3>
                                     <div class="flex items-center space-x-1 text-gray-400">
-                                        <x-heroicon-o-chat-bubble-left class="size-4" />
-                                        <span class="text-sm">SMS</span>
+                                        <x-heroicon-o-eye class="size-4" />
+                                        <span class="text-sm">Post views</span>
                                     </div>
                                 </div>
                                 <div>
-                                    <h4>412</h4>
-                                    <div class="flex items-center space-x-1 text-gray-400">
-                                        <x-heroicon-o-envelope class="size-4" />
+                                    <div class="flex items-center justify-between text-gray-400">
+                                        <div class="flex items-center space-x-1">
+                                            <x-heroicon-o-chat-bubble-left class="size-4" />
+                                            <h4 class="text-gray-700 dark:text-white">412</h4>
+                                        </div>
+                                        <span class="text-sm">SMS</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-gray-400">
+                                        <div class="flex items-center space-x-1">
+                                            <x-heroicon-o-envelope class="size-4" />
+                                            <h4 class="text-gray-700 dark:text-white">1,241</h4>
+                                        </div>
                                         <span class="text-sm">Email</span>
                                     </div>
                                 </div>
@@ -52,7 +53,7 @@
                             />
                         @endif
                     </x-filament::section>
-                </a>
+                </a>    
             </x-filament::grid.column>
         @endforeach
     </x-filament::grid>
