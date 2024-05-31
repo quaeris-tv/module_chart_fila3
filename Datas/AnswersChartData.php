@@ -7,8 +7,9 @@ namespace Modules\Chart\Datas;
 use Filament\Support\RawJs;
 use Illuminate\Support\Str;
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\DataCollection;
 use Webmozart\Assert\Assert;
+use Modules\Chart\Datas\AnswerData;
+use Spatie\LaravelData\DataCollection;
 
 class AnswersChartData extends Data
 {
@@ -395,8 +396,8 @@ class AnswersChartData extends Data
                         },
                     }";
         }
-
-        $label = round(floatval($this->answers->first()?->avg), 2);
+        Assert::isInstanceOf($this->answers->first(), AnswerData::class, '['.__LINE__.']['.__FILE__.']');
+        $label = round(floatval($this->answers->first()->avg), 2);
         $js = <<<JS
             scales: {
                 x:{
@@ -471,7 +472,7 @@ class AnswersChartData extends Data
         $options['plugins']['datalabels'] = [
             'display' => false,
         ];
-
+        Assert::isInstanceOf($this->answers->first(), AnswerData::class, '['.__LINE__.']['.__FILE__.']');
         $options['plugins']['doughnutLabel'] = [
             'label' => round(floatval($this->answers->first()->avg), 2),
         ];
