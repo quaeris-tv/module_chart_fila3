@@ -34,4 +34,8 @@ package-lock.json
 node_modules
 build
 .php-cs-fixer.cache
+<<<<<<< HEAD
 
+=======
+.php-cs-fixer.cache
+>>>>>>> f6eff5a (.)
