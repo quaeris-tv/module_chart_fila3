@@ -107,10 +107,6 @@ class OverlookWidget extends Widget
                     'url' => $res->getUrl('index'),
                 ];
             }
-<<<<<<< HEAD
-=======
-
->>>>>>> 3411d37 (chore(.php-cs-fixer.cache): resolve merge conflict in .php-cs-fixer.cache file)
         })
             ->filter()
             // ->when($plugin->shouldSortAlphabetical(), fn ($collection) => $collection->sortBy('name'))
