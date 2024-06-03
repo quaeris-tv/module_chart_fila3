@@ -4,20 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Providers\Filament;
 
-<<<<<<< HEAD
 use Filament\Panel;
 use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Support\Facades\Vite;
-=======
->>>>>>> 001dc50 (.)
 use Modules\Xot\Providers\Filament\XotBasePanelProvider;
 
 class AdminPanelProvider extends XotBasePanelProvider
 {
     protected string $module = 'Chart';
-<<<<<<< HEAD
 
     public function panel(Panel $panel): Panel
     {
@@ -32,6 +28,4 @@ class AdminPanelProvider extends XotBasePanelProvider
 
         return $panel;
     }
-=======
->>>>>>> 001dc50 (.)
 }

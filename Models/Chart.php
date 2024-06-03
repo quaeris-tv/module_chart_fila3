@@ -12,7 +12,6 @@ use Webmozart\Assert\Assert;
 /**
  * Modules\Chart\Models\Chart.
  *
-<<<<<<< HEAD
  * @property int|null $height
  * @property string|null $type
  * @property int|null $width
@@ -21,30 +20,12 @@ use Webmozart\Assert\Assert;
  * @method static Builder|Chart newModelQuery()
  * @method static Builder|Chart newQuery()
  * @method static Builder|Chart query()
-=======
- * @property int|null    $height
- * @property string|null $type
- * @property int|null    $width
- *
- * @method static \Modules\Chart\Database\Factories\ChartFactory factory($count = null, $state = [])
- * @method static Builder|Chart                                  newModelQuery()
- * @method static Builder|Chart                                  newQuery()
- * @method static Builder|Chart                                  query()
->>>>>>> 001dc50 (.)
  *
  * @mixin \Eloquent
  */
 class Chart extends BaseModel
 {
-<<<<<<< HEAD
     /** @var array<int, string> */
-=======
-    /**
-     * Undocumented variable.
-     *
-     * @var array<string>
-     */
->>>>>>> 001dc50 (.)
     protected $fillable = [
         'id',
         'post_id',
@@ -94,13 +75,7 @@ class Chart extends BaseModel
         'plot_value_color' => '#000000',
     ];
 
-<<<<<<< HEAD
     /** @var array<string, string> */
-=======
-    /**
-     * @var array<string, string>
-     */
->>>>>>> 001dc50 (.)
     protected $casts = [
         'colors' => 'array',
     ];
@@ -240,12 +215,8 @@ class Chart extends BaseModel
         if ($value === null) {
             return (int) $this->getPanelRow('width', 'width');
         }
-<<<<<<< HEAD
 
         if ((int) $value === 0) {
-=======
-        if ($value == 0) {
->>>>>>> 001dc50 (.)
             return (int) $this->getPanelRow('width', 'width');
         }
 
@@ -257,11 +228,7 @@ class Chart extends BaseModel
         if ($value === null) {
             return (int) $this->getPanelRow('height', 'height');
         }
-<<<<<<< HEAD
         if ((int) $value === 0) {
-=======
-        if ($value == 0) {
->>>>>>> 001dc50 (.)
             return (int) $this->getPanelRow('height', 'height');
         }
 
@@ -270,20 +237,12 @@ class Chart extends BaseModel
 
     public function getSettings(): array
     {
-<<<<<<< HEAD
         Assert::notNull($this->type, '['.__FILE__.']['.__LINE__.']');
-=======
-        Assert::notNull($this->type);
->>>>>>> 001dc50 (.)
         if (Str::startsWith($this->type, 'mixed')) {
             $parz = \array_slice(explode(':', $this->type), 1);
             $mixed_id = implode('|', $parz);
             $mixed = MixedChart::firstWhere(['id' => $mixed_id]);
-<<<<<<< HEAD
             Assert::notNull($mixed, '['.__FILE__.']['.__LINE__.']');
-=======
-            Assert::notNull($mixed);
->>>>>>> 001dc50 (.)
             Assert::isInstanceof($mixed->charts, Collection::class);
 
             return $mixed->charts->toArray();

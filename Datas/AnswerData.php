@@ -4,13 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Datas;
 
-<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
-=======
-use Spatie\LaravelData\Data;
->>>>>>> 001dc50 (.)
 
 class AnswerData extends Data
 {
@@ -39,12 +35,9 @@ class AnswerData extends Data
     public ?string $title = null;
 
     public ?string $subtitle = null;
-<<<<<<< HEAD
 
     public static function collection(EloquentCollection|array $data): DataCollection
     {
         return self::collect($data, DataCollection::class);
     }
-=======
->>>>>>> 001dc50 (.)
 }

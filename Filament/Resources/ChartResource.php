@@ -4,17 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Filament\Resources;
 
-<<<<<<< HEAD
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-=======
->>>>>>> 001dc50 (.)
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
-<<<<<<< HEAD
 // use Modules\Chart\Filament\Resources\ChartResource\RelationManagers;
 use Filament\Tables\Actions\EditAction;
 // use Filament\Forms;
@@ -23,14 +19,6 @@ use Filament\Tables\Table;
 use Modules\Chart\Actions\Chart\GetTypeOptions;
 use Modules\Chart\Filament\Resources\ChartResource\Pages\CreateChart;
 use Modules\Chart\Filament\Resources\ChartResource\Pages\EditChart;
-=======
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Table;
-use Modules\Chart\Filament\Resources\ChartResource\Pages\CreateChart;
-// use Modules\Chart\Filament\Resources\ChartResource\RelationManagers;
-use Modules\Chart\Filament\Resources\ChartResource\Pages\EditChart;
-// use Filament\Forms;
->>>>>>> 001dc50 (.)
 use Modules\Chart\Filament\Resources\ChartResource\Pages\ListCharts;
 use Modules\Chart\Models\Chart;
 
@@ -47,7 +35,6 @@ class ChartResource extends Resource
     {
         return $form
             ->schema([
-<<<<<<< HEAD
                 Select::make('type')->options(app(GetTypeOptions::class)->execute()),
                 Select::make('group_by')->options([null => '---', 'date:o-W' => 'Settimanale', 'date:Y-M' => 'Mensile', 'date:Y-M-d' => 'Giornaliero', 'field:Q41' => 'field:Q41']),
                 Select::make('sort_by')->options([null => '---', 'date:o-W' => 'Settimanale', 'date:Y-m' => 'Mensile', 'date:Y-m-d' => 'Giornaliero', '_value' => '_value', 'field:Q41' => 'field:Q41']),
@@ -88,8 +75,6 @@ class ChartResource extends Resource
                 // Forms\Components\TextInput::make('backleft'),
                 // Forms\Components\TextInput::make('backright'),
                 // Forms\Components\TextInput::make('font_size_question'),
-=======
->>>>>>> 001dc50 (.)
             ]);
     }
 
@@ -97,7 +82,6 @@ class ChartResource extends Resource
     {
         return $table
             ->columns([
-<<<<<<< HEAD
                 TextColumn::make('id'),
                 TextColumn::make('type'),
                 TextColumn::make('group_by'),
@@ -107,8 +91,6 @@ class ChartResource extends Resource
                 TextColumn::make('font_family'),
                 TextColumn::make('font_style'),
                 TextColumn::make('font_size'),
-=======
->>>>>>> 001dc50 (.)
             ])
             ->filters([
             ])

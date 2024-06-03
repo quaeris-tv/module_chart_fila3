@@ -18,33 +18,18 @@ use Modules\Quaeris\Models\QuestionChart;
  * Modules\Chart\Models\MixedChart.
  *
  * @property Collection<int, \Modules\Chart\Models\Chart> $charts
-<<<<<<< HEAD
  * @property int|null $charts_count
  *
  * @method static \Modules\Chart\Database\Factories\MixedChartFactory factory($count = null, $state = [])
  * @method static Builder|MixedChart newModelQuery()
  * @method static Builder|MixedChart newQuery()
  * @method static Builder|MixedChart query()
-=======
- * @property int|null                                     $charts_count
- *
- * @method static \Modules\Chart\Database\Factories\MixedChartFactory factory($count = null, $state = [])
- * @method static Builder|MixedChart                                  newModelQuery()
- * @method static Builder|MixedChart                                  newQuery()
- * @method static Builder|MixedChart                                  query()
->>>>>>> 001dc50 (.)
  *
  * @mixin \Eloquent
  */
 class MixedChart extends BaseModel
 {
-<<<<<<< HEAD
     /** @var array<int, string> */
-=======
-    /**
-     * @var array<string>
-     */
->>>>>>> 001dc50 (.)
     protected $fillable = [
         'id',
         'name',
@@ -56,11 +41,7 @@ class MixedChart extends BaseModel
     {
         Relation::morphMap([
             'question_chart' => QuestionChart::class,
-<<<<<<< HEAD
             'mixed_chart' => self::class,
-=======
-            'mixed_chart' => \Modules\Chart\Models\MixedChart::class,
->>>>>>> 001dc50 (.)
         ]);
 
         return $this->morphMany(Chart::class, 'post');

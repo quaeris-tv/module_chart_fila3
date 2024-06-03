@@ -31,11 +31,7 @@ return [
     'docsearchIndexName' => env('DOCSEARCH_INDEX'),
 
     // navigation menu
-<<<<<<< HEAD
     'navigation' => require_once ('navigation.php'),
-=======
-    'navigation' => require_once('navigation.php'),
->>>>>>> 001dc50 (.)
 
     // helpers
     'isActive' => static function ($page, $path) {
