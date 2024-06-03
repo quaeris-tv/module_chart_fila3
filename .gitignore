@@ -33,3 +33,4 @@ package-lock.json
 .php-cs-fixer.cache
 node_modules
 build
+.php-cs-fixer.cache
