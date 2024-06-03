@@ -38,7 +38,11 @@
         "enlightn/enlightn": "^2.5",
         "laravel/pint": "^1.13",
         "nunomaduro/collision": "*",
+<<<<<<< HEAD
         "larastan/larastan": "*",
+=======
+        "larastan/larastan": "^2.6",
+>>>>>>> 001dc50 (.)
         "nunomaduro/phpinsights": "^2.9",
         "orchestra/testbench": "*",
         "pestphp/pest": "*",
@@ -47,9 +51,16 @@
         "phpstan/phpstan-deprecation-rules": "*",
         "phpstan/phpstan-phpunit": "*",
         "psalm/plugin-laravel": "^2.8",
+<<<<<<< HEAD
         "rector/rector": "^0.18.6",
         "spatie/laravel-ray": "*",
         "symplify/phpstan-rules": "*",
+=======
+        "rector/phpstan-rules": "*",
+        "rector/rector": "^0.18.6",
+        "spatie/laravel-ray": "*",
+        "symplify/phpstan-rules": "^12.4",
+>>>>>>> 001dc50 (.)
         "thecodingmachine/phpstan-safe-rule": "^1.2",
         "tightenco/duster": "^2.2",
         "vimeo/psalm": "^5.15"

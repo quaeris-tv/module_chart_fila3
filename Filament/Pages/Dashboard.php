@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Modules\Chart\Filament\Pages;
 
 use Filament\Pages\Page;
+<<<<<<< HEAD
 use Modules\Chart\Filament\Widgets\Samples as WidgetsSamples;
+=======
+>>>>>>> 001dc50 (.)
 
 class Dashboard extends Page
 {
@@ -21,6 +24,7 @@ class Dashboard extends Page
         }
     }
     */
+<<<<<<< HEAD
 
     public function getHeaderWidgets(): array
     {
@@ -31,4 +35,6 @@ class Dashboard extends Page
             WidgetsSamples\Sample01Chart::make(),
         ];
     }
+=======
+>>>>>>> 001dc50 (.)
 }

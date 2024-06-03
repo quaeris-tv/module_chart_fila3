@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Datas;
 
+<<<<<<< HEAD
 use Filament\Support\RawJs;
 use Illuminate\Support\Str;
+=======
+>>>>>>> 001dc50 (.)
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
 use Webmozart\Assert\Assert;
@@ -33,17 +36,32 @@ class AnswersChartData extends Data
     {
         $type = $this->chart->type;
         switch ($type) {
+<<<<<<< HEAD
             case 'pie1':
             case 'pieAvg': // questa è una media ha un solo valore
                 $type = 'doughnut';
                 break;
+=======
+            case 'pieAvg': // questa è una media ha un solo valore
+                $type = 'doughnut';
+                break;
+            case 'horizbar1':
+                $type = 'bar';
+                break;
+            case 'pie1':
+                $type = 'doughnut';
+                break;
+>>>>>>> 001dc50 (.)
             case 'lineSubQuestion':
                 $type = 'line';
                 break;
             case 'bar2':
             case 'bar1':
             case 'bar3':
+<<<<<<< HEAD
             case 'horizbar1':
+=======
+>>>>>>> 001dc50 (.)
                 $type = 'bar';
                 break;
 
@@ -63,11 +81,15 @@ class AnswersChartData extends Data
         $datasets = [];
         $data = $this->answers->toCollection()->pluck('value')->all();
 
+<<<<<<< HEAD
         // if($this->chart->type != 'pieAvg'){
         // dddx($this->answers->toCollection());
         // }
 
         if (in_array($this->chart->type, ['pieAvg', 'pie1'], false)) {
+=======
+        if (in_array($this->chart->type, ['pieAvg', 'pie1'])) {
+>>>>>>> 001dc50 (.)
             $data = $this->answers->toCollection()->pluck('avg')->all();
 
             if (isset($this->chart->max)) {
@@ -107,7 +129,11 @@ class AnswersChartData extends Data
                 if ($other > 0.01) {
                     $data[] = $other;
                     $labels[] = $this->chart->answer_value_no_txt ?? 'answer_value_no_txt';
+<<<<<<< HEAD
                     Assert::notNull($labels[0], '['.__FILE__.']['.__LINE__.']');
+=======
+                    Assert::notNull($labels[0]);
+>>>>>>> 001dc50 (.)
                     if (\count($labels) === 2 && \strlen($labels[0]) < 3) {
                         $labels[0] = $this->chart->answer_value_txt;
                     }
@@ -125,18 +151,24 @@ class AnswersChartData extends Data
                     // 'label' => ['Percentuale'],
                     'label' => [$label],
                     'data' => $data,
+<<<<<<< HEAD
                     'data2' => $this->answers->toCollection()->pluck('value')->all(),
+=======
+>>>>>>> 001dc50 (.)
                     'borderColor' => $this->chart->getColorsRgba(0.2),
                     'backgroundColor' => $this->chart->getColorsRgba(0.2),
                 ],
             ];
         }
 
+<<<<<<< HEAD
         // dddx([
         //     'datasets' => $datasets,
         //     'labels' => $this->answers->toCollection()->pluck('label')->all(),
         // ]);
 
+=======
+>>>>>>> 001dc50 (.)
         return [
             'datasets' => $datasets,
             'labels' => $this->answers->toCollection()->pluck('label')->all(),
@@ -144,6 +176,7 @@ class AnswersChartData extends Data
         ];
     }
 
+<<<<<<< HEAD
     public function getChartJsOptionsArray(): array
     {
         $title = [];
@@ -511,6 +544,8 @@ class AnswersChartData extends Data
     }
 
     // funzione deprecata, utilizzata nella dashboard precedente
+=======
+>>>>>>> 001dc50 (.)
     public function getChartJsOptions(): array
     {
         $title = [];
@@ -541,10 +576,73 @@ class AnswersChartData extends Data
             $options['indexAxis'] = 'y';
         }
 
+<<<<<<< HEAD
         $chartjs_type = $this->getChartJsType();
         $method = 'getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsArray';
         $options = $this->{$method}($options);
 
         return $options;
+=======
+        // $options['plugins']['tooltip']['title'] = [
+        //     'display' => true,
+        //     // 'title' => 'prova',
+        //     'text' => 'provaaaa',
+        // ];
+
+        // dddx($options);
+        return $options;
+
+        // var options = {
+        //     tooltips: {
+        //             callbacks: {
+        //                 label: function(tooltipItem) {
+        //                     return "$" + Number(tooltipItem.yLabel) + " and so worth it !";
+        //                 }
+        //             }
+        //         },
+        //             title: {
+        //                       display: true,
+        //                       text: 'Ice Cream Truck',
+        //                       position: 'bottom'
+        //                   },
+        //             scales: {
+        //                 yAxes: [{
+        //                     ticks: {
+        //                         beginAtZero:true
+        //                     }
+        //                 }]
+        //             }
+        //     };
+
+        // [plugins: [{
+        //     id: "centerText"
+        //     , afterDatasetsDraw(chart, args, options) {
+        //         const {ctx, chartArea: {left, right, top, bottom, width, height}} = chart;
+
+        //         ctx.save();
+
+        //         var fontSize = width * 4.5 / 100;
+        //         var lineHeight = fontSize + (fontSize * {{$take}} / 100);
+
+        //         ctx.font = "bolder " + fontSize + "px Arial";
+        //         ctx.fillStyle = "rgba(0, 0, 0, 1)";
+        //         ctx.textAlign = "center";
+        //         ctx.fillText("{{$average}}", width / 2, (height / 2 + top - (lineHeight)));
+        //         ctx.restore();
+
+        //         ctx.font = fontSize + "px Arial";
+        //         ctx.fillStyle = "rgba(0, 0, 0, 1)";
+        //         ctx.textAlign = "center";
+        //         ctx.fillText("MEDIA", width / 2, (height / 2 + top) + fontSize - lineHeight);
+        //         ctx.restore();
+
+        //         ctx.font = fontSize + "px Arial";
+        //         ctx.fillStyle = "rgba(0, 0, 0, 1)";
+        //         ctx.textAlign = "center";
+        //         ctx.fillText("COMPLESSIVA", width / 2, (height / 2 + top) + fontSize);
+        //         ctx.restore();
+        //     }
+        // }]]
+>>>>>>> 001dc50 (.)
     }
 }
