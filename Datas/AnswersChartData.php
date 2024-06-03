@@ -396,8 +396,12 @@ class AnswersChartData extends Data
                         },
                     }";
         }
-        Assert::isInstanceOf($this->answers->first(), AnswerData::class, '['.__LINE__.']['.__FILE__.']');
-        $label = round(floatval($this->answers->first()->avg), 2);
+        $first_answer=$this->answers->first();
+        $label='--';
+        if($first_answer !=null){
+            Assert::isInstanceOf($first_answer, AnswerData::class, '['.__LINE__.']['.__FILE__.']');
+            $label = round(floatval($this->answers->first()->avg), 2);
+        }
         $js = <<<JS
             scales: {
                 x:{
