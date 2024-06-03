@@ -50,18 +50,6 @@
         "rector/phpstan-rules": "*",
         "rector/rector": "^0.18.6",
         "spatie/laravel-ray": "*",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "symplify/phpstan-rules": "^12.4",
-=======
-<<<<<<< HEAD
-=======
-        "symplify/phpstan-rules": "*",
->>>>>>> 7257190 (up)
->>>>>>> 277700a (chore(composer.json): resolve merge conflict in composer.json file)
-=======
-        "symplify/phpstan-rules": "*",
->>>>>>> 708f5d1 (fix(composer.json): resolve merge conflict by removing duplicate "symplify/phpstan-rules" dependency)
         "thecodingmachine/phpstan-safe-rule": "^1.2",
         "tightenco/duster": "^2.2",
         "vimeo/psalm": "^5.15"
