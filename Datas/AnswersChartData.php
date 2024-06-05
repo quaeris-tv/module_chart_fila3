@@ -7,9 +7,8 @@ namespace Modules\Chart\Datas;
 use Filament\Support\RawJs;
 use Illuminate\Support\Str;
 use Spatie\LaravelData\Data;
-use Webmozart\Assert\Assert;
-use Modules\Chart\Datas\AnswerData;
 use Spatie\LaravelData\DataCollection;
+use Webmozart\Assert\Assert;
 
 class AnswersChartData extends Data
 {
@@ -68,7 +67,7 @@ class AnswersChartData extends Data
         // dddx($this->answers->toCollection());
         // }
 
-        if (in_array($this->chart->type, ['pieAvg', 'pie1'], false)) {
+        if (\in_array($this->chart->type, ['pieAvg', 'pie1'], false)) {
             $data = $this->answers->toCollection()->pluck('avg')->all();
 
             if (isset($this->chart->max)) {
@@ -77,14 +76,14 @@ class AnswersChartData extends Data
                 if ($other > 0.01) {
                     $data[] = $other;
                     $labels[] = $this->chart->answer_value_no_txt ?? 'answer_value_no_txt';
-                    if (\count($labels) === 2 && \strlen($labels[0]) < 3) {
+                    if (2 === \count($labels) && \strlen($labels[0]) < 3) {
                         $labels[0] = $this->chart->answer_value_txt;
                     }
                 }
             }
         }
 
-        if (isset($data[0]) && is_array($data[0])) { // questionario multiplo
+        if (isset($data[0]) && \is_array($data[0])) { // questionario multiplo
             // dddx([$this->chart, $this->answers]);
             $legends = array_keys($data[0]);
             foreach ($legends as $key => $legend) {
@@ -109,13 +108,13 @@ class AnswersChartData extends Data
                     $data[] = $other;
                     $labels[] = $this->chart->answer_value_no_txt ?? 'answer_value_no_txt';
                     Assert::notNull($labels[0], '['.__FILE__.']['.__LINE__.']');
-                    if (\count($labels) === 2 && \strlen($labels[0]) < 3) {
+                    if (2 === \count($labels) && \strlen($labels[0]) < 3) {
                         $labels[0] = $this->chart->answer_value_txt;
                     }
                 }
             }
 
-            if (isset($this->answers->toCollection()->pluck('avg')[0]) && ! is_string($this->answers->toCollection()->pluck('avg')[0])) {
+            if (isset($this->answers->toCollection()->pluck('avg')[0]) && ! \is_string($this->answers->toCollection()->pluck('avg')[0])) {
                 $label = 'Media';
             } else {
                 $label = 'Percentuale';
@@ -149,7 +148,7 @@ class AnswersChartData extends Data
     {
         $title = [];
 
-        if ($this->title !== 'no_set') {
+        if ('no_set' !== $this->title) {
             $title = [
                 'display' => true,
                 'text' => $this->title,
@@ -159,7 +158,7 @@ class AnswersChartData extends Data
             ];
         }
 
-        if ($this->footer !== 'no_set') {
+        if ('no_set' !== $this->footer) {
             $title = [
                 'display' => true,
                 'text' => $this->footer,
@@ -171,7 +170,7 @@ class AnswersChartData extends Data
             'title' => $title,
         ];
 
-        if ($this->chart->type === 'horizbar1') {
+        if ('horizbar1' === $this->chart->type) {
             $options['indexAxis'] = 'y';
         }
 
@@ -187,10 +186,10 @@ class AnswersChartData extends Data
         $indexAxis = 'x';
         $value = '';
 
-        if ($this->chart->max === 100.0) {
+        if (100.0 === $this->chart->max) {
             $value = ' %';
         }
-        if ($this->chart->type === 'horizbar1') {
+        if ('horizbar1' === $this->chart->type) {
             $indexAxis = 'y';
             $value = ' %';
         }
@@ -198,7 +197,7 @@ class AnswersChartData extends Data
         $title = '{}';
 
         $labels = '{}';
-        if (count($this->getChartJsData()['datasets']) == 1 && $this->chart->type !== 'horizbar1') {
+        if (1 === \count($this->getChartJsData()['datasets']) && 'horizbar1' !== $this->chart->type) {
             $labels = "{
                 name: {
                     align: 'center',
@@ -226,7 +225,7 @@ class AnswersChartData extends Data
 
         $title = '{}';
         // dddx($this);
-        if ($this->title !== 'no_set' && $this->chart->type === 'horizbar1') {
+        if ('no_set' !== $this->title && 'horizbar1' === $this->chart->type) {
             $title = "{
                         display: true,
                         text: '".$this->title."',
@@ -236,7 +235,7 @@ class AnswersChartData extends Data
                     }";
         }
 
-        if ($this->footer !== 'no_set') {
+        if ('no_set' !== $this->footer) {
             $title = "{
                         display: true,
                         text: '".$this->footer."',
@@ -244,7 +243,7 @@ class AnswersChartData extends Data
                     }";
         }
         $tooltip = '{}';
-        if ($this->chart->type === 'bar2' && count($this->getChartJsData()['datasets']) == 1) {
+        if ('bar2' === $this->chart->type && 1 === \count($this->getChartJsData()['datasets'])) {
             $tooltip = "{
                 callbacks: {
                     label: function(context) {
@@ -387,7 +386,7 @@ class AnswersChartData extends Data
     public function getChartJsDoughnutOptionsJs(string $js): string
     {
         $title = '{}';
-        if ($this->title !== 'no_set') {
+        if ('no_set' !== $this->title) {
             $title = "{
                         display: true,
                         text: '".$this->title."',
@@ -396,11 +395,11 @@ class AnswersChartData extends Data
                         },
                     }";
         }
-        $first_answer=$this->answers->first();
-        $label='--';
-        if($first_answer !=null){
+        $first_answer = $this->answers->first();
+        $label = '--';
+        if (null !== $first_answer) {
             Assert::isInstanceOf($first_answer, AnswerData::class, '['.__LINE__.']['.__FILE__.']');
-            $label = round(floatval($this->answers->first()->avg), 2);
+            $label = round((float) $this->answers->first()->avg, 2);
         }
         $js = <<<JS
             scales: {
@@ -478,7 +477,7 @@ class AnswersChartData extends Data
         ];
         Assert::isInstanceOf($this->answers->first(), AnswerData::class, '['.__LINE__.']['.__FILE__.']');
         $options['plugins']['doughnutLabel'] = [
-            'label' => round(floatval($this->answers->first()->avg), 2),
+            'label' => round((float) $this->answers->first()->avg, 2),
         ];
 
         return $options;
@@ -491,28 +490,11 @@ class AnswersChartData extends Data
         $method = 'getChartJs'.Str::of($chartjs_type)->studly()->toString().'OptionsJs';
         $js = $this->{$method}($js);
 
-        // dddx(
-        //     RawJs::make('{
-        //         '.$js.'
-        //         }')
-        // );
+        // return '{'.$js.'}';
 
         return RawJs::make('{
             '.$js.'
             }');
-        /*
-        return RawJs::make(<<<JS
-            {
-                scales: {
-                    y: {
-                        ticks: {
-                            callback: (value) => '€' + value,
-                        },
-                    },
-                },
-            }
-        JS);
-        */
     }
 
     // funzione deprecata, utilizzata nella dashboard precedente
@@ -520,7 +502,7 @@ class AnswersChartData extends Data
     {
         $title = [];
 
-        if ($this->title !== 'no_set') {
+        if ('no_set' !== $this->title) {
             $title = [
                 'display' => true,
                 'text' => $this->title,
@@ -530,7 +512,7 @@ class AnswersChartData extends Data
             ];
         }
 
-        if ($this->footer !== 'no_set') {
+        if ('no_set' !== $this->footer) {
             $title = [
                 'display' => true,
                 'text' => $this->footer,
@@ -542,7 +524,7 @@ class AnswersChartData extends Data
             'title' => $title,
         ];
 
-        if ($this->chart->type === 'horizbar1') {
+        if ('horizbar1' === $this->chart->type) {
             $options['indexAxis'] = 'y';
         }
 
