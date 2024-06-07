@@ -76,7 +76,7 @@ class AnswersChartData extends Data
                 if ($other > 0.01) {
                     $data[] = $other;
                     $labels[] = $this->chart->answer_value_no_txt ?? 'answer_value_no_txt';
-                    if (2 === \count($labels) && \strlen($labels[0]) < 3) {
+                    if (\count($labels) === 2 && \strlen($labels[0]) < 3) {
                         $labels[0] = $this->chart->answer_value_txt;
                     }
                 }
@@ -108,7 +108,7 @@ class AnswersChartData extends Data
                     $data[] = $other;
                     $labels[] = $this->chart->answer_value_no_txt ?? 'answer_value_no_txt';
                     Assert::notNull($labels[0], '['.__FILE__.']['.__LINE__.']');
-                    if (2 === \count($labels) && \strlen($labels[0]) < 3) {
+                    if (\count($labels) === 2 && \strlen($labels[0]) < 3) {
                         $labels[0] = $this->chart->answer_value_txt;
                     }
                 }
@@ -148,7 +148,7 @@ class AnswersChartData extends Data
     {
         $title = [];
 
-        if ('no_set' !== $this->title) {
+        if ($this->title !== 'no_set') {
             $title = [
                 'display' => true,
                 'text' => $this->title,
@@ -158,7 +158,7 @@ class AnswersChartData extends Data
             ];
         }
 
-        if ('no_set' !== $this->footer) {
+        if ($this->footer !== 'no_set') {
             $title = [
                 'display' => true,
                 'text' => $this->footer,
@@ -170,7 +170,7 @@ class AnswersChartData extends Data
             'title' => $title,
         ];
 
-        if ('horizbar1' === $this->chart->type) {
+        if ($this->chart->type === 'horizbar1') {
             $options['indexAxis'] = 'y';
         }
 
@@ -186,10 +186,10 @@ class AnswersChartData extends Data
         $indexAxis = 'x';
         $value = '';
 
-        if (100.0 === $this->chart->max) {
+        if ($this->chart->max === 100.0) {
             $value = ' %';
         }
-        if ('horizbar1' === $this->chart->type) {
+        if ($this->chart->type === 'horizbar1') {
             $indexAxis = 'y';
             $value = ' %';
         }
@@ -197,7 +197,7 @@ class AnswersChartData extends Data
         $title = '{}';
 
         $labels = '{}';
-        if (1 === \count($this->getChartJsData()['datasets']) && 'horizbar1' !== $this->chart->type) {
+        if (\count($this->getChartJsData()['datasets']) === 1 && $this->chart->type !== 'horizbar1') {
             $labels = "{
                 name: {
                     align: 'center',
@@ -225,7 +225,7 @@ class AnswersChartData extends Data
 
         $title = '{}';
         // dddx($this);
-        if ('no_set' !== $this->title && 'horizbar1' === $this->chart->type) {
+        if ($this->title !== 'no_set' && $this->chart->type === 'horizbar1') {
             $title = "{
                         display: true,
                         text: '".$this->title."',
@@ -235,7 +235,7 @@ class AnswersChartData extends Data
                     }";
         }
 
-        if ('no_set' !== $this->footer) {
+        if ($this->footer !== 'no_set') {
             $title = "{
                         display: true,
                         text: '".$this->footer."',
@@ -243,7 +243,7 @@ class AnswersChartData extends Data
                     }";
         }
         $tooltip = '{}';
-        if ('bar2' === $this->chart->type && 1 === \count($this->getChartJsData()['datasets'])) {
+        if ($this->chart->type === 'bar2' && \count($this->getChartJsData()['datasets']) === 1) {
             $tooltip = "{
                 callbacks: {
                     label: function(context) {
@@ -386,7 +386,7 @@ class AnswersChartData extends Data
     public function getChartJsDoughnutOptionsJs(string $js): string
     {
         $title = '{}';
-        if ('no_set' !== $this->title) {
+        if ($this->title !== 'no_set') {
             $title = "{
                         display: true,
                         text: '".$this->title."',
@@ -397,7 +397,7 @@ class AnswersChartData extends Data
         }
         $first_answer = $this->answers->first();
         $label = '--';
-        if (null !== $first_answer) {
+        if ($first_answer !== null) {
             Assert::isInstanceOf($first_answer, AnswerData::class, '['.__LINE__.']['.__FILE__.']');
             $label = round((float) $this->answers->first()->avg, 2);
         }
@@ -502,7 +502,7 @@ class AnswersChartData extends Data
     {
         $title = [];
 
-        if ('no_set' !== $this->title) {
+        if ($this->title !== 'no_set') {
             $title = [
                 'display' => true,
                 'text' => $this->title,
@@ -512,7 +512,7 @@ class AnswersChartData extends Data
             ];
         }
 
-        if ('no_set' !== $this->footer) {
+        if ($this->footer !== 'no_set') {
             $title = [
                 'display' => true,
                 'text' => $this->footer,
@@ -524,7 +524,7 @@ class AnswersChartData extends Data
             'title' => $title,
         ];
 
-        if ('horizbar1' === $this->chart->type) {
+        if ($this->chart->type === 'horizbar1') {
             $options['indexAxis'] = 'y';
         }
 
