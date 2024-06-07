@@ -65,7 +65,7 @@ class OverlookWidget extends Widget
 
     public function formatRawCount(string $number): string
     {
-        return number_format($number);
+        return number_format((float) $number);
     }
 
     /**
@@ -101,8 +101,8 @@ class OverlookWidget extends Widget
             if ($res->canViewAny()) {
                 return [
                     'name' => $title,
-                    'raw_count' => $this->formatRawcount($rawCount),
-                    'count' => $this->convertCount($rawCount),
+                    'raw_count' => $this->formatRawcount((string) $rawCount),
+                    'count' => $this->convertCount((string) $rawCount),
                     'icon' => $customIcon ?: $res->getNavigationIcon(),
                     'url' => $res->getUrl('index'),
                 ];
