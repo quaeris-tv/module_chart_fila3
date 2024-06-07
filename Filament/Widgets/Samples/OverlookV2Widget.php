@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * @see https://github.com/awcodes/overlook/blob/2.x/src/Widgets/OverlookWidget.php
  */
@@ -7,7 +9,6 @@ namespace Modules\Chart\Filament\Widgets\Samples;
 
 use Awcodes\Overlook\Contracts\CustomizeOverlookWidget;
 use Awcodes\Overlook\OverlookPlugin;
-use Exception;
 use Filament\Widgets\Widget;
 use NumberFormatter;
 
@@ -15,7 +16,7 @@ class OverlookV2Widget extends Widget
 {
     protected static string $view = 'chart::filament.widgets.samples.overlook-v2';
 
-    protected int | string | array $columnSpan = 'full';
+    protected int|string|array $columnSpan = 'full';
 
     public array $data = [];
 
@@ -28,7 +29,7 @@ class OverlookV2Widget extends Widget
     public array $icons = [];
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function mount(): void
     {
@@ -68,11 +69,10 @@ class OverlookV2Widget extends Widget
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function getData(): array
     {
-
         $includes = [];
         $excludes = [];
         $icons = $this->icons;
@@ -84,7 +84,6 @@ class OverlookV2Widget extends Widget
         return collect($rawResources)->filter(function ($resource) use ($excludes) {
             return ! in_array($resource, $excludes);
         })->transform(function ($resource) use ($icons) {
-
             $customIcon = array_search($resource, $icons);
 
             $res = app($resource);
@@ -95,7 +94,7 @@ class OverlookV2Widget extends Widget
                 $rawCount = $res->getOverlookWidgetQuery($widgetQuery)->count();
                 $title = $res->getOverlookWidgetTitle();
             } else {
-                $rawCount = 666;//$widgetQuery->count();
+                $rawCount = 666; // $widgetQuery->count();
                 $title = ucfirst($res->getPluralModelLabel());
             }
 
@@ -109,25 +108,24 @@ class OverlookV2Widget extends Widget
                 ];
             }
 
-            return null;
         })
             ->filter()
-            //->when($plugin->shouldSortAlphabetical(), fn ($collection) => $collection->sortBy('name'))
+            // ->when($plugin->shouldSortAlphabetical(), fn ($collection) => $collection->sortBy('name'))
             ->values()
             ->toArray();
     }
 
     public static function getSort(): int
     {
-        //return OverlookPlugin::get()->getSort();
+        // return OverlookPlugin::get()->getSort();
         return 1;
     }
 
     public function shouldShowTooltips(string $number): bool
     {
-        //$plugin = OverlookPlugin::get();
+        // $plugin = OverlookPlugin::get();
 
-        //return strlen($number) >= 4 && $plugin->shouldAbbreviateCount() && $plugin->shouldShowTooltips();
+        // return strlen($number) >= 4 && $plugin->shouldAbbreviateCount() && $plugin->shouldShowTooltips();
         return true;
     }
 }

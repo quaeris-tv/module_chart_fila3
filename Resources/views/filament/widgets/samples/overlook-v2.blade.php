@@ -11,7 +11,7 @@
             <x-filament::grid.column>
                 <a
                     href="{{ $resource['url'] }}"
-                    @if($this->shouldShowTooltips($resource['raw_count']))
+                    @if ($this->shouldShowTooltips($resource['raw_count']))
                         x-data x-tooltip="'{{ $resource['raw_count'] }}'"
                     @endif
                 >
@@ -53,7 +53,7 @@
                             />
                         @endif
                     </x-filament::section>
-                </a>    
+                </a>
             </x-filament::grid.column>
         @endforeach
     </x-filament::grid>

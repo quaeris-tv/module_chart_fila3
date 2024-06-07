@@ -7,9 +7,8 @@ namespace Modules\Chart\Datas;
 use Filament\Support\RawJs;
 use Illuminate\Support\Str;
 use Spatie\LaravelData\Data;
-use Webmozart\Assert\Assert;
-use Modules\Chart\Datas\AnswerData;
 use Spatie\LaravelData\DataCollection;
+use Webmozart\Assert\Assert;
 
 class AnswersChartData extends Data
 {
@@ -396,9 +395,9 @@ class AnswersChartData extends Data
                         },
                     }";
         }
-        $first_answer=$this->answers->first();
-        $label='--';
-        if($first_answer !=null){
+        $first_answer = $this->answers->first();
+        $label = '--';
+        if ($first_answer != null) {
             Assert::isInstanceOf($first_answer, AnswerData::class, '['.__LINE__.']['.__FILE__.']');
             $label = round(floatval($this->answers->first()->avg), 2);
         }
