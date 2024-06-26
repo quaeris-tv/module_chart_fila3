@@ -26,10 +26,6 @@ class Dashboard extends Page
     {
         return [
             WidgetsSamples\Bar02Chart::make(),
-<<<<<<< HEAD
-            WidgetsSamples\OverlookWidget::make(),
-=======
->>>>>>> 6cf35d5 (add new version of stat chart)
             WidgetsSamples\OverlookV2Widget::make(),
             WidgetsSamples\Doughnut01Chart::make(),
             WidgetsSamples\Sample01Chart::make(),

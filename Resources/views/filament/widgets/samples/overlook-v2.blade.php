@@ -11,11 +11,7 @@
             <x-filament::grid.column>
                 <a
                     href="{{ $resource['url'] }}"
-<<<<<<< HEAD
-                    @if ($this->shouldShowTooltips($resource['raw_count']))
-=======
                     @if($this->shouldShowTooltips($resource['raw_count']))
->>>>>>> 6cf35d5 (add new version of stat chart)
                         x-data x-tooltip="'{{ $resource['raw_count'] }}'"
                     @endif
                 >
@@ -23,29 +19,6 @@
                         <div class="relative z-10">
                             <div class="text-center overlook-name ">{{ $resource['name'] }}</div>
                             {{-- <div class="absolute text-3xl font-bold leading-none text-gray-600 overlook-count dark:text-gray-300 bottom-3 right-4">{{ $resource['count'] }}</div> --}}
-<<<<<<< HEAD
-                            <div class="grid items-center sm:gap-6 sm:grid-cols-2">
-                                <div class="py-4">
-                                    <h3 class="text-lg font-bold">2,318,589</h3>
-                                    <div class="flex items-center space-x-1 text-gray-400">
-                                        <x-heroicon-o-eye class="size-4" />
-                                        <span class="text-sm">Post views</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex items-center justify-between text-gray-400">
-                                        <div class="flex items-center space-x-1">
-                                            <x-heroicon-o-chat-bubble-left class="size-4" />
-                                            <h4 class="text-gray-700 dark:text-white">412</h4>
-                                        </div>
-                                        <span class="text-sm">SMS</span>
-                                    </div>
-                                    <div class="flex items-center justify-between text-gray-400">
-                                        <div class="flex items-center space-x-1">
-                                            <x-heroicon-o-envelope class="size-4" />
-                                            <h4 class="text-gray-700 dark:text-white">1,241</h4>
-                                        </div>
-=======
                             <div class="py-4">
                                 <h3 class="text-lg font-bold">2,318,589</h3>
                                 <div class="flex items-center space-x-1 text-gray-400">
@@ -66,7 +39,6 @@
                                     <h4>412</h4>
                                     <div class="flex items-center space-x-1 text-gray-400">
                                         <x-heroicon-o-envelope class="size-4" />
->>>>>>> 6cf35d5 (add new version of stat chart)
                                         <span class="text-sm">Email</span>
                                     </div>
                                 </div>
@@ -76,11 +48,7 @@
                             <x-filament::icon
                                 :icon="$resource['icon']"
                                 :size="24"
-<<<<<<< HEAD
-                                class="absolute w-auto transition left-2 text-primary-500 h-36 z-1 overlook-icon -bottom-12 opacity-10 dark:opacity-10 group-hover:scale-110 group-hover:-rotate-12 group-hover:opacity-30"
-=======
                                 class="absolute left-0 w-auto text-gray-500 transition h-36 z-1 overlook-icon -bottom-12 opacity-10 dark:opacity-10 group-hover:scale-110 group-hover:-rotate-12 group-hover:opacity-30"
->>>>>>> 6cf35d5 (add new version of stat chart)
                             />
                         @endif
                     </x-filament::section>
