@@ -1,6 +1,10 @@
 {
   "Resources/css/app.css": {
+<<<<<<< HEAD
     "file": "assets/app-Dh0FPYev.css",
+=======
+    "file": "assets/app-D4rFEOff.css",
+>>>>>>> 6cf35d5 (add new version of stat chart)
     "src": "Resources/css/app.css",
     "isEntry": true
   },
