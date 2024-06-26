@@ -29,11 +29,11 @@
             "Modules\\Chart\\": ""
         }
     },
-    "require": {
+    "require_comment": {
         "laraxot/module_xot_fila3": "dev-master",
         "thecodingmachine/safe": "^2.5"
     },
-    "require-dev": {
+    "require-dev_comment": {
         "driftingly/rector-laravel": "^0.26.2",
         "enlightn/enlightn": "^2.5",
         "laravel/pint": "^1.13",
@@ -54,7 +54,7 @@
         "tightenco/duster": "^2.2",
         "vimeo/psalm": "^5.15"
     },
-    "repositories": [ {
+    "repositories_comment_self": [ {
         "type": "path",
         "url": "../module_xot_fila3"
     },
@@ -65,6 +65,18 @@
     {
         "type": "path",
         "url": "../module_ui_fila3"
+    }],
+    "repositories": [ {
+        "type": "path",
+        "url": "../Xot"
+    },
+    {
+        "type": "path",
+        "url": "../Tenant"
+    },
+    {
+        "type": "path",
+        "url": "../UI"
     }],
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse",
