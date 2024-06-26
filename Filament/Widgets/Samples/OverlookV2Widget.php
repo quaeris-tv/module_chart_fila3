@@ -108,7 +108,6 @@ class OverlookV2Widget extends Widget
                 ];
             }
 
-            return null;
         })
             ->filter()
             // ->when($plugin->shouldSortAlphabetical(), fn ($collection) => $collection->sortBy('name'))
