@@ -29,11 +29,11 @@
             "Modules\\Chart\\": ""
         }
     },
-    "require": {
-        "laraxot/module_xot_fila3": "dev-master",
+    "require_comment": {
+        "laraxot/module_xot_fila3": "*",
         "thecodingmachine/safe": "^2.5"
     },
-    "require-dev": {
+    "require-dev_comment": {
         "driftingly/rector-laravel": "^0.26.2",
         "enlightn/enlightn": "^2.5",
         "laravel/pint": "^1.13",
@@ -46,15 +46,15 @@
         "pestphp/pest-plugin-laravel": "*",
         "phpstan/phpstan-deprecation-rules": "*",
         "phpstan/phpstan-phpunit": "*",
-        "psalm/plugin-laravel": "^2.8",
+        "psalm/plugin-laravel": "*",
         "rector/phpstan-rules": "*",
-        "rector/rector": "^0.18.6",
+        "rector/rector": "*",
         "spatie/laravel-ray": "*",
         "thecodingmachine/phpstan-safe-rule": "^1.2",
         "tightenco/duster": "^2.2",
         "vimeo/psalm": "^5.15"
     },
-    "repositories": [ {
+    "repositories_comment_self": [ {
         "type": "path",
         "url": "../module_xot_fila3"
     },
@@ -65,6 +65,18 @@
     {
         "type": "path",
         "url": "../module_ui_fila3"
+    }],
+    "repositories": [ {
+        "type": "path",
+        "url": "../Xot"
+    },
+    {
+        "type": "path",
+        "url": "../Tenant"
+    },
+    {
+        "type": "path",
+        "url": "../UI"
     }],
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse",

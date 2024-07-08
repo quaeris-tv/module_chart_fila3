@@ -26,7 +26,6 @@ class Dashboard extends Page
     {
         return [
             WidgetsSamples\Bar02Chart::make(),
-            WidgetsSamples\OverlookWidget::make(),
             WidgetsSamples\OverlookV2Widget::make(),
             WidgetsSamples\Doughnut01Chart::make(),
             WidgetsSamples\Sample01Chart::make(),
