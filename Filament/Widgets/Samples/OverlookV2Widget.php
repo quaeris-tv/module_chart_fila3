@@ -107,10 +107,6 @@ class OverlookV2Widget extends Widget
                     'url' => $res->getUrl('index'),
                 ];
             }
-<<<<<<< HEAD
-
-=======
->>>>>>> fe9987d44e3b418ea86a93b61dddb76d3131a2f8
         })
             ->filter()
             // ->when($plugin->shouldSortAlphabetical(), fn ($collection) => $collection->sortBy('name'))
