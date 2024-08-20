@@ -14,6 +14,12 @@ use function Safe\json_encode;
 
 class ChartColumn extends Column
 {
+    protected static ?string $heading = null;
+
+    protected static ?string $maxHeight = null;
+
+    protected static ?array $options = null;
+
     // class ChartColumn extends Component
     public string $dataChecksum;
 
@@ -34,12 +40,6 @@ class ChartColumn extends Column
     public string $chartType = 'bar';
 
     public array $chartOptions = [];
-
-    protected static ?string $heading = null;
-
-    protected static ?string $maxHeight = null;
-
-    protected static ?array $options = null;
 
     protected ?array $cachedData = null;
 

@@ -16,8 +16,6 @@ class OverlookWidget extends Widget
 {
     protected static string $view = 'chart::filament.widgets.samples.overlook';
 
-    protected int|string|array $columnSpan = 'full';
-
     public array $data = [];
 
     public array $excludes = [];
@@ -27,6 +25,14 @@ class OverlookWidget extends Widget
     public array $grid = [];
 
     public array $icons = [];
+
+    protected int|string|array $columnSpan = 'full';
+
+    public static function getSort(): int
+    {
+        // return OverlookPlugin::get()->getSort();
+        return 1;
+    }
 
     /**
      * @throws \Exception
@@ -112,12 +118,6 @@ class OverlookWidget extends Widget
             // ->when($plugin->shouldSortAlphabetical(), fn ($collection) => $collection->sortBy('name'))
             ->values()
             ->toArray();
-    }
-
-    public static function getSort(): int
-    {
-        // return OverlookPlugin::get()->getSort();
-        return 1;
     }
 
     public function shouldShowTooltips(string $number): bool
