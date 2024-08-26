@@ -397,7 +397,7 @@ class AnswersChartData extends Data
         }
         $first_answer = $this->answers->first();
         $label = '--';
-        if ($first_answer !== null) {
+        if ($first_answer != null) {
             Assert::isInstanceOf($first_answer, AnswerData::class, '['.__LINE__.']['.__FILE__.']');
             $label = round((float) $this->answers->first()->avg, 2);
         }
