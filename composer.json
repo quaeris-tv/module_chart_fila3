@@ -29,6 +29,9 @@
             "Modules\\Chart\\": ""
         }
     },
+    "require": {
+        "amenadiel/jpgraph": "^4.1"
+    },
     "require_comment": {
         "laraxot/module_xot_fila3": "*",
         "thecodingmachine/safe": "^2.5"
