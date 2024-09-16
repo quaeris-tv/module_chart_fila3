@@ -20,11 +20,15 @@ class Pie1Action
         $labels = $answersChartData->answers->toCollection()->pluck('label')->all();
         $data = $answersChartData->answers->toCollection()->pluck('avg')->all();
         $chart = $answersChartData->chart;
-        // dddx(['labels' => $labels, 'data' => $data, 'answers' => $answers]);
+        // dddx(['labels' => $labels, 'data' => $data, 'chart' => $chart]);
         // dddx($chart->max);
         if (isset($chart->max)) {
-            $sum = collect($data)->sum();
-
+            // $sum = collect($data)->sum();
+            if(is_array($data)){
+                $sum = collect($data[0])->sum();
+            }else{
+                $sum = collect($data)->sum();
+            }
             $other = $chart->max - $sum;
             // dddx([$sum, $other, $this->vars['max']]);
             if ($other > 0.01) {
