@@ -1,17 +1,8 @@
 {
   "Resources/css/app.css": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     "file": "assets/app-FFbD27R3.css",
     "src": "Resources/css/app.css",
     "isEntry": true
->>>>>>> origin/master
-=======
-    "file": "assets/app-FFbD27R3.css",
-    "src": "Resources/css/app.css",
-    "isEntry": true
->>>>>>> origin/dev
   },
     "file": "assets/app-l0sNRNKZ.js",
     "name": "app",
