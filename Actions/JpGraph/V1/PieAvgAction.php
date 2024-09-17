@@ -23,12 +23,6 @@ class PieAvgAction
         $chart = $answersChartData->chart;
         if (isset($chart->max)) {
             $sum = collect($data)->sum();
-            // if(is_array($data)){
-            //     $sum = collect($data[0])->sum();
-            // }else{
-            //     $sum = collect($data)->sum();
-            // }
-
             $other = $chart->max - $sum;
             // $other = $chart->max - $chart->avg;
             if ($other > 0.01) {
