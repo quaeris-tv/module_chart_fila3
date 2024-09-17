@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Modules\Quaeris\Models\QuestionChart;
 
 /**
  * Modules\Chart\Models\MixedChart.
@@ -40,7 +39,7 @@ class MixedChart extends BaseModel
     public function charts(): MorphMany
     {
         Relation::morphMap([
-            'question_chart' => QuestionChart::class,
+            'question_chart' => 'Modules\Quaeris\Models\QuestionChart',
             'mixed_chart' => self::class,
         ]);
 
