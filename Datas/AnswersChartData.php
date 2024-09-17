@@ -72,6 +72,11 @@ class AnswersChartData extends Data
 
             if (isset($this->chart->max)) {
                 $sum = collect($data)->sum();
+                // if(is_array($data)){
+                //     $sum = collect($data[0])->sum();
+                // }else{
+                //     $sum = collect($data)->sum();
+                // }
                 $other = $this->chart->max - $sum;
                 if ($other > 0.01) {
                     $data[] = $other;
@@ -102,7 +107,12 @@ class AnswersChartData extends Data
             }
 
             if (isset($this->chart->max)) {
-                $sum = collect($data)->sum();
+                // $sum = collect($data)->sum();
+                if(is_array($data)){
+                    $sum = collect($data[0])->sum();
+                }else{
+                    $sum = collect($data)->sum();
+                }
                 $other = $this->chart->max - $sum;
                 if ($other > 0.01) {
                     $data[] = $other;

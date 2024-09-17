@@ -27,11 +27,16 @@ class Dashboard extends Page
         return [
             WidgetsSamples\Bar02Chart::make(),
 <<<<<<< HEAD
+<<<<<<< HEAD
             WidgetsSamples\OverlookV2Widget::make(),
 =======
             // WidgetsSamples\OverlookWidget::make(),
             // WidgetsSamples\OverlookV2Widget::make(),
 >>>>>>> origin/master
+=======
+            // WidgetsSamples\OverlookWidget::make(),
+            // WidgetsSamples\OverlookV2Widget::make(),
+>>>>>>> origin/dev
             WidgetsSamples\Doughnut01Chart::make(),
             WidgetsSamples\Sample01Chart::make(),
         ];
