@@ -99,6 +99,7 @@ class Bar3Action
             foreach ($datay1 as $i => $v) {
                 $txt = new Text('');
                 if (\is_array($v) && isset($v[0])) {
+                    Assert::string($v[0]);
                     $txt = new Text($v[0].'');
                 }
 
