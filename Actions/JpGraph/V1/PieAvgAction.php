@@ -23,8 +23,8 @@ class PieAvgAction
         $data = $answersChartData->answers->toCollection()->pluck('avg')->all();
         $chart = $answersChartData->chart;
         if (isset($chart->max)) {
-            Assert::float($sum = collect($data)->sum());
-            Assert::float($chart->max);
+            Assert::numeric($sum = collect($data)->sum());
+            Assert::numeric($chart->max);
             $other = $chart->max - $sum;
             // $other = $chart->max - $chart->avg;
             if ($other > 0.01) {

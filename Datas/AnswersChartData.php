@@ -71,8 +71,8 @@ class AnswersChartData extends Data
             $data = $this->answers->toCollection()->pluck('avg')->all();
 
             if (isset($this->chart->max)) {
-                Assert::float($sum = collect($data)->sum());
-                Assert::float($this->chart->max);
+                Assert::numeric($sum = collect($data)->sum());
+                Assert::numeric($this->chart->max);
                 $other = $this->chart->max - $sum;
                 if ($other > 0.01) {
                     $data[] = $other;
@@ -103,8 +103,8 @@ class AnswersChartData extends Data
             }
 
             if (isset($this->chart->max)) {
-                Assert::float($sum = collect($data)->sum());
-                Assert::float($this->chart->max);
+                Assert::numeric($sum = collect($data)->sum());
+                Assert::numeric($this->chart->max);
                 $other = $this->chart->max - $sum;
                 if ($other > 0.01) {
                     $data[] = $other;

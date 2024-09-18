@@ -24,8 +24,8 @@ class Pie1Action
         // dddx(['labels' => $labels, 'data' => $data, 'chart' => $chart]);
 
         if (isset($chart->max)) {
-            Assert::float($sum = collect($data)->sum());
-            Assert::float($chart->max);
+            Assert::numeric($sum = collect($data)->sum());
+            Assert::numeric($chart->max);
             $other = $chart->max - $sum;
             // dddx([$sum, $other, $this->vars['max']]);
             if ($other > 0.01) {
