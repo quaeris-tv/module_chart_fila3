@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Actions\JpGraph\V1;
 
+use Webmozart\Assert\Assert;
 use Amenadiel\JpGraph\Graph\Graph;
-use Amenadiel\JpGraph\Graph\PieGraph;
 use Amenadiel\JpGraph\Plot\PiePlotC;
-use Modules\Chart\Actions\JpGraph\ApplyGraphStyleAction;
+use Amenadiel\JpGraph\Graph\PieGraph;
 use Modules\Chart\Datas\AnswersChartData;
 use Spatie\QueueableAction\QueueableAction;
+use Modules\Chart\Actions\JpGraph\ApplyGraphStyleAction;
 
 class Pie1Action
 {
@@ -20,11 +21,11 @@ class Pie1Action
         $labels = $answersChartData->answers->toCollection()->pluck('label')->all();
         $data = $answersChartData->answers->toCollection()->pluck('avg')->all();
         $chart = $answersChartData->chart;
-        // dddx(['labels' => $labels, 'data' => $data, 'answers' => $answers]);
-        // dddx($chart->max);
-        if (isset($chart->max)) {
-            $sum = collect($data)->sum();
+        // dddx(['labels' => $labels, 'data' => $data, 'chart' => $chart]);
 
+        if (isset($chart->max)) {
+            Assert::numeric($sum = collect($data)->sum());
+            Assert::numeric($chart->max);
             $other = $chart->max - $sum;
             // dddx([$sum, $other, $this->vars['max']]);
             if ($other > 0.01) {

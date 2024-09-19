@@ -4,7 +4,6 @@
     "src": "Resources/css/app.css",
     "isEntry": true
   },
-  "Resources/js/app.js": {
     "file": "assets/app-l0sNRNKZ.js",
     "name": "app",
     "src": "Resources/js/app.js",

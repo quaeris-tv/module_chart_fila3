@@ -28,8 +28,8 @@ use Illuminate\Database\Eloquent\Relations\Relation;
  */
 class MixedChart extends BaseModel
 {
-    /** @var array<int, string> */
-    protected $fillable = [
+    /** @var list<string> */
+    protected $fillable  = [
         'id',
         'name',
     ];
