@@ -33,25 +33,25 @@ class MixedChartResource extends Resource
             ]);
     }
 
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-            ])
-            ->filters([
-            ])
-            ->actions([
-                EditAction::make(),
-            ])
-            ->bulkActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ])
-            ->emptyStateActions([
-                // {{ tableEmptyStateActions }}
-            ]);
-    }
+    // public static function table(Table $table): Table
+    // {
+    //     return $table
+    //         ->columns([
+    //         ])
+    //         ->filters([
+    //         ])
+    //         ->actions([
+    //             EditAction::make(),
+    //         ])
+    //         ->bulkActions([
+    //             BulkActionGroup::make([
+    //                 DeleteBulkAction::make(),
+    //             ]),
+    //         ])
+    //         ->emptyStateActions([
+    //             // {{ tableEmptyStateActions }}
+    //         ]);
+    // }
 
     public static function getRelations(): array
     {

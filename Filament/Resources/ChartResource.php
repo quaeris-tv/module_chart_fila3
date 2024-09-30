@@ -78,35 +78,6 @@ class ChartResource extends Resource
             ]);
     }
 
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('type'),
-                TextColumn::make('group_by'),
-                TextColumn::make('sort_by'),
-                TextColumn::make('width'),
-                TextColumn::make('height'),
-                TextColumn::make('font_family'),
-                TextColumn::make('font_style'),
-                TextColumn::make('font_size'),
-            ])
-            ->filters([
-            ])
-            ->actions([
-                EditAction::make(),
-            ])
-            ->bulkActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ])
-            ->emptyStateActions([
-                // {{ tableEmptyStateActions }}
-            ]);
-    }
-
     public static function getRelations(): array
     {
         return [
