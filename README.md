@@ -8,11 +8,16 @@ Welcome to the Module Chart Fila 3 repository! This module is part of a larger p
 mechanism for visualizing data.
 
 **Features**
----------
-
 * **Multi-line charts**: Display multiple lines of data on a single chart.
 * **Axis customization**: Customize x- and y-axis labels, titles, and scales.
 * **Legend management**: Manage the legend with options to hide or show specific lines.
+
+## Prerequisites
+- php v8+
+- laravel
+- **[Xot Module](https://github.com/laraxot/module_xot_fila3.git)** (Required)
+- **[Tenant Module](https://github.com/laraxot/module_tenant_fila3.git)** (Required)
+- **[UI Module](https://github.com/laraxot/module_ui_fila3.git)** (Required)
 
 ## Add Module to the Project Base
 Inside the `laravel/Modules` folder:
