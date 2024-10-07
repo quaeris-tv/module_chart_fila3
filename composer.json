@@ -57,18 +57,6 @@
         "tightenco/duster": "^2.2",
         "vimeo/psalm": "^5.15"
     },
-    "repositories_comment_self": [ {
-        "type": "path",
-        "url": "../module_xot_fila3"
-    },
-    {
-        "type": "path",
-        "url": "../module_tenant_fila3"
-    },
-    {
-        "type": "path",
-        "url": "../module_ui_fila3"
-    }],
     "repositories": [ {
         "type": "path",
         "url": "../Xot"
