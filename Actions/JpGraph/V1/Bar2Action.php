@@ -71,6 +71,7 @@ class Bar2Action
             $tmp = app(ApplyPlotStyleAction::class)->execute($tmp, $chart);
             $tmp->SetColor($colors[$i]);
             $tmp->SetFillColor($colors[$i].'@'.$chart->transparency); // trasparenza da 0 a 1
+            $tmp->value->Show();
             // $tmp->SetFillColor($colors[$k]);
             /*
             if (isset($chart->legend)) {
