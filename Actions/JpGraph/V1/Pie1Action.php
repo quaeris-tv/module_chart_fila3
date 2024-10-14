@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Actions\JpGraph\V1;
 
-use Webmozart\Assert\Assert;
 use Amenadiel\JpGraph\Graph\Graph;
-use Amenadiel\JpGraph\Plot\PiePlotC;
 use Amenadiel\JpGraph\Graph\PieGraph;
+use Amenadiel\JpGraph\Plot\PiePlotC;
+use Modules\Chart\Actions\JpGraph\ApplyGraphStyleAction;
 use Modules\Chart\Datas\AnswersChartData;
 use Spatie\QueueableAction\QueueableAction;
-use Modules\Chart\Actions\JpGraph\ApplyGraphStyleAction;
+use Webmozart\Assert\Assert;
 
 class Pie1Action
 {

@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class MixedChart extends BaseModel
 {
     /** @var list<string> */
-    protected $fillable  = [
+    protected $fillable = [
         'id',
         'name',
     ];
