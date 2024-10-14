@@ -26,7 +26,7 @@ use Webmozart\Assert\Assert;
 class Chart extends BaseModel
 {
     /** @var list<string> */
-    protected $fillable  = [
+    protected $fillable = [
         'id',
         'post_id',
         'post_type',

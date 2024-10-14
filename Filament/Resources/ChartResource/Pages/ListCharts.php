@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Filament\Resources\ChartResource\Pages;
 
-use Filament\Tables\Table;
 use Filament\Actions\CreateAction;
-use Modules\UI\Enums\TableLayoutEnum;
+use Filament\Resources\Pages\ListRecords;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Enums\FiltersLayout;
-use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Enums\ActionsPosition;
-use Modules\Xot\Filament\Traits\TransTrait;
-use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Table;
 use Modules\Chart\Filament\Resources\ChartResource;
+use Modules\UI\Enums\TableLayoutEnum;
+use Modules\Xot\Filament\Traits\TransTrait;
 
 class ListCharts extends ListRecords
 {
