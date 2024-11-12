@@ -1,4 +1,4 @@
-var Je=Object.defineProperty;var Ke=(e,t,i)=>t in e?Je(e,t,{enumerable:!0,configurable:!0,writable:!0,value:i}):e[t]=i;var _=(e,t,i)=>(Ke(e,typeof t!="symbol"?t+"":t,i),i);/*!
+var Je=Object.defineProperty;var Ke=(e,t,i)=>t in e?Je(e,t,{enumerable:!0,configurable:!0,writable:!0,value:i}):e[t]=i;var _=(e,t,i)=>Ke(e,typeof t!="symbol"?t+"":t,i);/*!
  * @kurkle/color v0.3.2
  * https://github.com/kurkle/color#readme
  * (c) 2023 Jukka Kurkela

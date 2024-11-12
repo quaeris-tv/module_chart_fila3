@@ -29,6 +29,9 @@
             "Modules\\Chart\\": ""
         }
     },
+    "require": {
+        "amenadiel/jpgraph": "^4.1"
+    },
     "require_comment": {
         "laraxot/module_xot_fila3": "*",
         "thecodingmachine/safe": "^2.5"
@@ -40,7 +43,7 @@
         "nunomaduro/collision": "*",
         "larastan/larastan": "^2.6",
         "nunomaduro/phpinsights": "^2.9",
-        "orchestra/testbench": "*",
+        "orchestra/testbench": "^9.4",
         "pestphp/pest": "*",
         "pestphp/pest-plugin-arch": "*",
         "pestphp/pest-plugin-laravel": "*",
@@ -54,18 +57,6 @@
         "tightenco/duster": "^2.2",
         "vimeo/psalm": "^5.15"
     },
-    "repositories_comment_self": [ {
-        "type": "path",
-        "url": "../module_xot_fila3"
-    },
-    {
-        "type": "path",
-        "url": "../module_tenant_fila3"
-    },
-    {
-        "type": "path",
-        "url": "../module_ui_fila3"
-    }],
     "repositories": [ {
         "type": "path",
         "url": "../Xot"

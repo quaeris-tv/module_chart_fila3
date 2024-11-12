@@ -10,6 +10,7 @@ use Amenadiel\JpGraph\Plot\PiePlotC;
 use Modules\Chart\Actions\JpGraph\ApplyGraphStyleAction;
 use Modules\Chart\Datas\AnswersChartData;
 use Spatie\QueueableAction\QueueableAction;
+use Webmozart\Assert\Assert;
 
 class PieAvgAction
 {
@@ -22,7 +23,8 @@ class PieAvgAction
         $data = $answersChartData->answers->toCollection()->pluck('avg')->all();
         $chart = $answersChartData->chart;
         if (isset($chart->max)) {
-            $sum = collect($data)->sum();
+            Assert::numeric($sum = collect($data)->sum());
+            Assert::numeric($chart->max);
             $other = $chart->max - $sum;
             // $other = $chart->max - $chart->avg;
             if ($other > 0.01) {
@@ -39,6 +41,7 @@ class PieAvgAction
 
         // A new pie graph
         $graph = new PieGraph($chart->width, $chart->height, 'auto');
+
         // $graph = $this->applyGraphStyle($graph);
         $graph = app(ApplyGraphStyleAction::class)->execute($graph, $chart);
 

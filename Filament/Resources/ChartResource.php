@@ -9,13 +9,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteBulkAction;
 // use Modules\Chart\Filament\Resources\ChartResource\RelationManagers;
-use Filament\Tables\Actions\EditAction;
 // use Filament\Forms;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Table;
 use Modules\Chart\Actions\Chart\GetTypeOptions;
 use Modules\Chart\Filament\Resources\ChartResource\Pages\CreateChart;
 use Modules\Chart\Filament\Resources\ChartResource\Pages\EditChart;
@@ -75,35 +70,6 @@ class ChartResource extends Resource
                 // Forms\Components\TextInput::make('backleft'),
                 // Forms\Components\TextInput::make('backright'),
                 // Forms\Components\TextInput::make('font_size_question'),
-            ]);
-    }
-
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('type'),
-                TextColumn::make('group_by'),
-                TextColumn::make('sort_by'),
-                TextColumn::make('width'),
-                TextColumn::make('height'),
-                TextColumn::make('font_family'),
-                TextColumn::make('font_style'),
-                TextColumn::make('font_size'),
-            ])
-            ->filters([
-            ])
-            ->actions([
-                EditAction::make(),
-            ])
-            ->bulkActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ])
-            ->emptyStateActions([
-                // {{ tableEmptyStateActions }}
             ]);
     }
 

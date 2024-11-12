@@ -40,6 +40,9 @@ class GetTypeOptions
         $mixed = MixedChart::get()->pluck('name', 'id')->all();
         $data = [];
         foreach ($mixed as $k => $v) {
+            if (! is_string($v)) {
+                continue;
+            }
             $k1 = 'mixed:'.$k;
             $data[$k1] = 'mixed:'.$v;
         }

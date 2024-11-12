@@ -10,6 +10,7 @@ use Amenadiel\JpGraph\Plot\PiePlotC;
 use Modules\Chart\Actions\JpGraph\ApplyGraphStyleAction;
 use Modules\Chart\Datas\AnswersChartData;
 use Spatie\QueueableAction\QueueableAction;
+use Webmozart\Assert\Assert;
 
 class Pie1Action
 {
@@ -20,11 +21,11 @@ class Pie1Action
         $labels = $answersChartData->answers->toCollection()->pluck('label')->all();
         $data = $answersChartData->answers->toCollection()->pluck('avg')->all();
         $chart = $answersChartData->chart;
-        // dddx(['labels' => $labels, 'data' => $data, 'answers' => $answers]);
-        // dddx($chart->max);
-        if (isset($chart->max)) {
-            $sum = collect($data)->sum();
+        // dddx(['labels' => $labels, 'data' => $data, 'chart' => $chart]);
 
+        if (isset($chart->max)) {
+            Assert::numeric($sum = collect($data)->sum());
+            Assert::numeric($chart->max);
             $other = $chart->max - $sum;
             // dddx([$sum, $other, $this->vars['max']]);
             if ($other > 0.01) {
