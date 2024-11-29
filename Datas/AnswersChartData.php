@@ -91,8 +91,8 @@ class AnswersChartData extends Data
                 $tmp = [
                     'label' => $legend,
                     'data' => array_column($data, $legend),
-                    'borderColor' => $this->chart->getColorsRgba(0.2)[$key] ?? null,
-                    'backgroundColor' => $this->chart->getColorsRgba(0.2)[$key] ?? null,
+                    'borderColor' => $this->chart->getColorsRgba(0.5)[$key] ?? null,
+                    'backgroundColor' => $this->chart->getColorsRgba(0.5)[$key] ?? null,
                 ];
                 $datasets[] = $tmp;
             }
@@ -128,8 +128,8 @@ class AnswersChartData extends Data
                     'label' => [$label],
                     'data' => $data,
                     'data2' => $this->answers->toCollection()->pluck('value')->all(),
-                    'borderColor' => $this->chart->getColorsRgba(0.2),
-                    'backgroundColor' => $this->chart->getColorsRgba(0.2),
+                    'borderColor' => $this->chart->getColorsRgba(0.5),
+                    'backgroundColor' => $this->chart->getColorsRgba(0.5),
                 ],
             ];
         }

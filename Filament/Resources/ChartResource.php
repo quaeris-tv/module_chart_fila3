@@ -64,7 +64,8 @@ class ChartResource extends Resource
                     '16' => '16',
                     '18' => '18',
                 ]),
-
+                TextInput::make('list_color'),
+                TextInput::make('transparency'),
                 // Forms\Components\TextInput::make('backtop'),
                 // Forms\Components\TextInput::make('backbottom'),
                 // Forms\Components\TextInput::make('backleft'),
