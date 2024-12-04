@@ -39,7 +39,7 @@ class Doughnut01Chart extends ChartWidget
                     'display' => true,
                 ],
                 'doughnutLabel' => [
-                    'label' => 'sti cazzi !',
+                    'label' => 'label 1 !',
                 ],
                 'datalabels' => [
                     'display' => false,

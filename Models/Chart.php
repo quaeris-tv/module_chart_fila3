@@ -15,12 +15,12 @@ use Webmozart\Assert\Assert;
  * @property int|null $height
  * @property string|null $type
  * @property int|null $width
- *
  * @method static \Modules\Chart\Database\Factories\ChartFactory factory($count = null, $state = [])
  * @method static Builder|Chart newModelQuery()
  * @method static Builder|Chart newQuery()
  * @method static Builder|Chart query()
- *
+ * @property-read \Modules\Blog\Models\Profile|null $creator
+ * @property-read \Modules\Blog\Models\Profile|null $updater
  * @mixin \Eloquent
  */
 class Chart extends BaseModel
