@@ -8,7 +8,6 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
 // use Modules\Chart\Filament\Resources\ChartResource\RelationManagers;
 // use Filament\Forms;
 use Modules\Chart\Actions\Chart\GetTypeOptions;
@@ -20,7 +19,7 @@ use Modules\Chart\Models\Chart;
 // use Illuminate\Database\Eloquent\Builder;
 // use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ChartResource extends Resource
+class ChartResource extends \Modules\Xot\Filament\Resources\XotBaseResource
 {
     protected static ?string $model = Chart::class;
 
