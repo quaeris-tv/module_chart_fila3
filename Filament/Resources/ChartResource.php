@@ -4,22 +4,23 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Filament\Resources;
 
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Modules\Chart\Models\Chart;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Toggle;
 // use Modules\Chart\Filament\Resources\ChartResource\RelationManagers;
 // use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Modules\Chart\Actions\Chart\GetTypeOptions;
-use Modules\Chart\Filament\Resources\ChartResource\Pages\CreateChart;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 use Modules\Chart\Filament\Resources\ChartResource\Pages\EditChart;
 use Modules\Chart\Filament\Resources\ChartResource\Pages\ListCharts;
-use Modules\Chart\Models\Chart;
+use Modules\Chart\Filament\Resources\ChartResource\Pages\CreateChart;
 
 // use Illuminate\Database\Eloquent\Builder;
 // use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ChartResource extends \Modules\Xot\Filament\Resources\XotBaseResource
+class ChartResource extends XotBaseResource
 {
     protected static ?string $model = Chart::class;
 
