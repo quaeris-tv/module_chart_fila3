@@ -20,7 +20,7 @@ use Modules\Chart\Models\MixedChart;
 // use Illuminate\Database\Eloquent\Builder;
 // use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class MixedChartResource extends Resource
+class MixedChartResource extends \Modules\Xot\Filament\Resources\XotBaseResource
 {
     protected static ?string $model = MixedChart::class;
 
