@@ -1,18 +1,19 @@
 {
-  "Resources/css/app.css": {
-    "file": "assets/app-FFbD27R3.css",
-    "src": "Resources/css/app.css",
+  "resources/css/app.css": {
+    "file": "assets/app-NIGm4AA7.css",
+    "src": "resources/css/app.css",
     "isEntry": true
   },
+  "resources/js/app.js": {
     "file": "assets/app-l0sNRNKZ.js",
     "name": "app",
-    "src": "Resources/js/app.js",
+    "src": "resources/js/app.js",
     "isEntry": true
   },
-  "Resources/js/filament-chart-js-plugins.js": {
+  "resources/js/filament-chart-js-plugins.js": {
     "file": "assets/filament-chart-js-plugins-1O2DZ1dQ.js",
     "name": "filament-chart-js-plugins",
-    "src": "Resources/js/filament-chart-js-plugins.js",
+    "src": "resources/js/filament-chart-js-plugins.js",
     "isEntry": true
   }
 }
