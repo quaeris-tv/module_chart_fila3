@@ -13,7 +13,7 @@ use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Enums\ActionsPosition;
 use Modules\Xot\Filament\Traits\TransTrait;
 use Filament\Tables\Actions\DeleteBulkAction;
-use Modules\Xot\Filament\Pages\XotBaseListRecords;
+use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 use Modules\Chart\Filament\Resources\MixedChartResource;
 
 class ListMixedCharts extends XotBaseListRecords
@@ -22,6 +22,7 @@ class ListMixedCharts extends XotBaseListRecords
     public TableLayoutEnum $layoutView = TableLayoutEnum::LIST;
 
     protected static string $resource = MixedChartResource::class;
+
 
 
 
