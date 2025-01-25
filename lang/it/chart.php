@@ -54,4 +54,8 @@
       'label' => 'transparency',
     ),
   ),
+  'navigation' => 
+  array (
+    'sort' => 14,
+  ),
 );
