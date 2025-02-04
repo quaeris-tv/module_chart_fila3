@@ -56,6 +56,6 @@
   ),
   'navigation' => 
   array (
-    'sort' => 14,
+    'sort' => 92,
   ),
 );
