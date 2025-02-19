@@ -8,7 +8,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 use Modules\Chart\Filament\Resources\MixedChartResource;
 
-class EditMixedChart extends EditRecord
+class EditMixedChart extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
 {
     protected static string $resource = MixedChartResource::class;
 

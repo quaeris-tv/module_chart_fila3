@@ -8,7 +8,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 use Modules\Chart\Filament\Resources\ChartResource;
 
-class EditChart extends EditRecord
+class EditChart extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
 {
     protected static string $resource = ChartResource::class;
 
