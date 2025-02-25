@@ -26,10 +26,9 @@ class ChartResource extends XotBaseResource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function form(Form $form): Form
+    public static function getFormSchema(): array
     {
-        return $form
-            ->schema([
+        return [
                 Select::make('type')->options(app(GetTypeOptions::class)->execute()),
                 Select::make('group_by')->options([null => '---', 'date:o-W' => 'Settimanale', 'date:Y-M' => 'Mensile', 'date:Y-M-d' => 'Giornaliero', 'field:Q41' => 'field:Q41']),
                 Select::make('sort_by')->options([null => '---', 'date:o-W' => 'Settimanale', 'date:Y-m' => 'Mensile', 'date:Y-m-d' => 'Giornaliero', '_value' => '_value', 'field:Q41' => 'field:Q41']),
@@ -71,21 +70,8 @@ class ChartResource extends XotBaseResource
                 // Forms\Components\TextInput::make('backleft'),
                 // Forms\Components\TextInput::make('backright'),
                 // Forms\Components\TextInput::make('font_size_question'),
-            ]);
+            ];
     }
 
-    public static function getRelations(): array
-    {
-        return [
-        ];
-    }
 
-    public static function getPages(): array
-    {
-        return [
-            'index' => ListCharts::route('/'),
-            'create' => CreateChart::route('/create'),
-            'edit' => EditChart::route('/{record}/edit'),
-        ];
-    }
 }
