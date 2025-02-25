@@ -54,4 +54,9 @@
       'label' => 'transparency',
     ),
   ),
+  'navigation' => 
+  array (
+    'label' => 'chart.navigation',
+    'group' => 'chart.navigation',
+  ),
 );

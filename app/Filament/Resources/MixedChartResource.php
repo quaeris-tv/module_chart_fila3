@@ -27,11 +27,11 @@ class MixedChartResource extends XotBaseResource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function getFormSchema(): array
+    public static function form(Form $form): Form
     {
-        return [
-            
-        ];
+        return $form
+            ->schema([
+            ]);
     }
 
 
