@@ -25,29 +25,23 @@ class MixedChartResource extends XotBaseResource
 {
     protected static ?string $model = MixedChart::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-            ]);
-    }
-
-
-
-    public static function getRelations(): array
+    public static function getFormSchema(): array
     {
         return [
+            'name' => TextInput::make('name')
+                ->required()
+                ->maxLength(255)
+                ->placeholder('mixed_chart.placeholders.name'),
+
+            'charts' => Select::make('charts')
+                ->multiple()
+                ->relationship('charts', 'name')
+                ->preload()
+                ->placeholder('mixed_chart.placeholders.charts')
         ];
     }
 
-    public static function getPages(): array
-    {
-        return [
-            'index' => ListMixedCharts::route('/'),
-            'create' => CreateMixedChart::route('/create'),
-            'edit' => EditMixedChart::route('/{record}/edit'),
-        ];
-    }
+
+
+    
 }
