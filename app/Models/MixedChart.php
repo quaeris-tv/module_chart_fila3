@@ -19,9 +19,9 @@ use Illuminate\Database\Eloquent\Relations\Relation;
  * @property Collection<int, \Modules\Chart\Models\Chart> $charts
  * @property int|null $charts_count
  * @method static \Modules\Chart\Database\Factories\MixedChartFactory factory($count = null, $state = [])
- * @method static Builder|MixedChart newModelQuery()
- * @method static Builder|MixedChart newQuery()
- * @method static Builder|MixedChart query()
+ * @method static \Illuminate\Database\Eloquent\Builder|MixedChart newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MixedChart newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MixedChart query()
  * @property-read \Modules\Blog\Models\Profile|null $creator
  * @property-read \Modules\Blog\Models\Profile|null $updater
  * @mixin \Eloquent
