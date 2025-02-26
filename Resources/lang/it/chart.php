@@ -58,5 +58,6 @@
   array (
     'label' => 'chart.navigation',
     'group' => 'chart.navigation',
+    'sort' => 59,
   ),
 );
