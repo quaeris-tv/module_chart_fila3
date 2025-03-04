@@ -1,5 +1,4 @@
-<?php 
-return array (
+<?php return array (
   'fields' => 
   array (
     'id' => 
@@ -60,4 +59,4 @@ return array (
     'label' => 'chart.navigation',
     'group' => 'chart.navigation',
   ),
-);
+);
