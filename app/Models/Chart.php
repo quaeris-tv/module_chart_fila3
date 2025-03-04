@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
@@ -15,12 +14,15 @@ use Webmozart\Assert\Assert;
  * @property int|null $height
  * @property string|null $type
  * @property int|null $width
+ *
  * @method static \Modules\Chart\Database\Factories\ChartFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Chart newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Chart newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Chart query()
+ *
  * @property-read \Modules\Blog\Models\Profile|null $creator
  * @property-read \Modules\Blog\Models\Profile|null $updater
+ *
  * @mixin \Eloquent
  */
 class Chart extends BaseModel

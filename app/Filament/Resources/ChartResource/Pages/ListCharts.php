@@ -4,26 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Filament\Resources\ChartResource\Pages;
 
-use Filament\Tables\Table;
-use Filament\Actions\CreateAction;
-use Modules\UI\Enums\TableLayoutEnum;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Enums\FiltersLayout;
-use Filament\Resources\Pages\ListRecords;
-use Filament\Tables\Enums\ActionsPosition;
-use Modules\Xot\Filament\Traits\TransTrait;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 use Modules\Chart\Filament\Resources\ChartResource;
+use Modules\UI\Enums\TableLayoutEnum;
+use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 
 class ListCharts extends XotBaseListRecords
 {
-
-    public TableLayoutEnum $layoutView = TableLayoutEnum::LIST;
-
     protected static string $resource = ChartResource::class;
 
+    public TableLayoutEnum $layoutView = TableLayoutEnum::LIST;
 
     public function getListTableColumns(): array
     {
@@ -39,6 +29,4 @@ class ListCharts extends XotBaseListRecords
             TextColumn::make('font_size'),
         ];
     }
-
-
 }

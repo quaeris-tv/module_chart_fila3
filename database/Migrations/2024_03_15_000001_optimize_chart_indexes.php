@@ -5,7 +5,8 @@ declare(strict_types=1);
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
-return new class extends XotBaseMigration {
+return new class extends XotBaseMigration
+{
     /**
      * Run the migrations.
      */
@@ -16,14 +17,14 @@ return new class extends XotBaseMigration {
                 // Indici per ottimizzare le query sui grafici
                 $table->index(['type', 'status'], 'idx_chart_type_status');
                 $table->index(['user_id', 'created_at'], 'idx_chart_user_created');
-                
+
                 // Indici per le relazioni e aggregazioni
                 $table->index(['dataset_id'], 'idx_chart_dataset');
                 $table->index(['aggregation_type', 'interval'], 'idx_chart_aggregation');
-                
+
                 // Indice per ricerche temporali
                 $table->index(['created_at', 'updated_at'], 'idx_chart_timestamps');
-                
+
                 // Indice per filtri comuni
                 $table->index(['visibility', 'status'], 'idx_chart_visibility');
             }
@@ -46,4 +47,4 @@ return new class extends XotBaseMigration {
             }
         );
     }
-}; 
+};
